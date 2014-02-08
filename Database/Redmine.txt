@@ -1,0 +1,68 @@
+
+各系统命名相关信息
+
+1.	电子警察系统ITS
+	数据库名称：its
+	WEB-URL: its
+	UPLOAD-PATH: /its/upload/pic_upload
+	UPLOAD-FTP: its_upload
+  
+2.	卡卡系统kk
+	数据库名称：kk
+	WEB-URL: kk
+	UPLOAD-PATH: /kk/upload/pic_upload
+	UPLOAD-FTP: kk_upload
+	
+3.	核工业安防保卫系统  Intelligent Transport and Security Defense System.
+	数据库名称：itssd
+	WEB-URL: itssd
+	UPLOAD-PATH: /itssd/upload/pic_upload
+	UPLOAD-FTP: itssd_upload
+
+4.	公安图像侦查实战平台(贵阳市高清视频监控平台二期项目)
+	数据库名称：afgy
+	WEB-URL: afgy
+	UPLOAD-PATH: /afgy/upload/pic_upload
+	UPLOAD-FTP: afgy_upload
+	
+5.	职务犯罪侦查平台(贵阳省检察院职务犯罪侦查平台)Crimes Investigation platform
+	数据库名称：cip
+	WEB-URL: cip
+	UPLOAD-PATH: /cip/upload/pic_upload
+	UPLOAD-FTP: cip_upload
+	
+6.	出入境管理信息系统(贵阳省检察院职务犯罪侦查平台-出入境管理系统)
+	数据库名称：eems
+	WEB-URL: eems
+	UPLOAD-PATH: /eems/upload/pic_upload
+	UPLOAD-FTP: eems_upload
+
+7.	只能交通云分析系统
+	数据库名称：cloudretrieval
+	WEB-URL: cloudretrieval
+	
+8.	struts1基础WEB系统
+	数据库名称：basestruts1
+	WEB-URL: basestruts1
+	
+9.	SSH2基础WEB系统
+	数据库名称：ssh2
+	WEB-URL: ssh2
+	
+备注：
+1. ITS从vsimonitor复制，然后删掉无关的表和内容
+2. kk从vsimonitor复制，然后删掉无关的表和内容
+3. itssd从vsimonitor复制，然后删掉无关的表和内容
+4. afgy从vsimonitor复制，只保留系统的基本内容（如菜单、用户、权限等），然后删掉无关的表和内容
+5. 各个系统的WEB工程都要分开，并以与数据库相同的名字命名
+6. 各个系统都要形成一个系统设计的文档
+7. 数据库basessh2还不完善，在开发的过程中去晚上，并写入相应系统的系统设计文档
+
+以下3条整理到开发规范文档中的JAVAWEB项目开发下面
+
+8. 各个系统的最新数据库sql文件放到对应的项目工程目录,如src/database
+9. 项目中的src/resources
+10. Java源码放到src/java
+11. 所有的UPLOAD-PATH都应在web.xml中定义，页面显示的时候都应获取此路径作为url的开头部分，若此路径在此webapps路径下，应以"/"开头，若在其他服务器，应写全路径，如"http://10.168.1.253:81/its_upload"
+
+附上部分系统的数据库sql文件
