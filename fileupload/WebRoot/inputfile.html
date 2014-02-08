@@ -1,0 +1,20 @@
+<form action="upload.do?" method="post" ENCTYPE="multipart/form-data" >
+
+			<input name="myfile" type="file"><br>
+			<input name="myfile" type="file"><br>
+			<input type="submit"><br>
+</form>
+<hr size=3>
+<form action="upload.do?callback=callback" method="post" target="hidden_frame" ENCTYPE="multipart/form-data" >
+
+			<input name="myfile" type="file"><br>
+			<input name="myfile" type="file"><br>
+			<input name="myfile" type="file"><br>
+			<input type="submit"><br>
+</form>
+<iframe name="hidden_frame" width=500 height=200></iframe>
+<script>
+function callback(sign, cnt, files){
+	alert(files);
+}
+</script>

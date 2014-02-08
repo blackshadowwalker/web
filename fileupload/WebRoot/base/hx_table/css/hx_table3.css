@@ -1,0 +1,429 @@
+#hx_table_container3 {
+	-moz-user-select:none;
+	/*border:1px #ACA899 solid;*/
+	padding:0px;
+	margin:0px;
+}
+#hx_table_header3 {
+	background-attachment: scroll;
+	background-image: url(../images/titlebg.gif);
+	background-repeat: repeat-x;
+	margin: 0px;
+	padding: 0px;
+	height:27px;
+	width:100%;
+	
+	border-bottom:1 #D2E0F1 solid;
+}
+#hx_table_header_text3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #15428B;
+	padding-left:20px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+#hx_table_body3{
+	padding:0px;
+	margin:0px;
+	width:100%;
+	height:100%;
+}
+#hx_table_toolbar3{
+	background-attachment: scroll;
+	background-image: url(../images/toolbarbg.bmp);
+	background-repeat: repeat-x;
+	border-bottom:1px solid #838383;
+	margin:0px;
+	/*width:100%;*/
+	height:27px;
+}
+#hx_table_infobar_div3{
+	background-attachment: scroll;
+	background-image: url(../images/toolbarbg.bmp);
+	background-repeat: repeat-x;
+	border-bottom:1px solid #838383;
+	margin:0px;
+	padding-top:8px;
+	color:red;
+	width:100%;
+	height:27px;
+}
+
+#hx_table_infobar3{
+	color:#000000;
+}
+
+#hx_table_data_container3{
+padding:0;
+margin:0;
+/*width:100%;*/
+overflow-x:auto;
+overflow-y:no;
+}
+#hx_table_page_info3{
+font-family:Arial, Helvetica, sans-serif;
+font-size:13px;
+margin-right:10px;
+}
+#hx_table_page3{
+
+padding:0;
+width:100%;
+height:27px;
+background-attachment: scroll;
+background-image: url(../images/toolbarbg.bmp);
+background-repeat: repeat-x;
+border-top:1px solid #838383;
+border-bottom:1px solid #838383;
+}
+
+
+#hx_table_grid_header3{
+background-image:url(../images/thbg.gif);
+background-repeat: repeat;
+background-attachment:scroll;
+padding:0;
+margin:0;
+height:27px;
+}
+
+#header_line_num3{
+width:21px;
+margin:0;
+padding:0;
+}
+#hx_grid_num3{
+
+background-image:url(../images/grid-col-bg.gif);
+background-repeat: repeat-y;
+background-attachment:scroll;
+background-position:right;
+background-color:#FFFFFF;
+text-align:center;
+white-space:normal;
+word-break:break-all;
+width:21px;
+font-size:9px;
+color:#000000;
+}
+#hx_table_grid_scroll3{
+overflow-y:auto;
+margin:0;
+padding:0;
+height:100%;
+background-color:#FFFFFF;
+}
+#hx_table_grid_scroll3 table{
+margin:0;
+padding:0;
+font-family:Arial, Helvetica, sans-serif;
+font-size:14px;
+height:100%;
+}
+
+#hx_table_grid_scroll3 table tr.highlight {
+background:#C1D3FB none repeat scroll 0 0;
+}
+
+#hx_table_grid_scroll3 table tr.selected {
+
+background:#2259D7 none repeat scroll 0 0;
+}
+
+#hx_table_grid_scroll3 table td{
+
+border-bottom:1px #EDEDED solid;
+border-right:1px #EDEDED solid;
+height:auto;
+white-space:normal;
+word-break:break-all;
+}
+
+#hx_table_grid_header3 table{
+font-family:Arial, Helvetica, sans-serif;
+font-size:14px;
+margin:0px;
+padding:0px;
+/*height:100%;*/
+}
+#hx_table_grid_header3 table tr{
+height:100%;
+margin:0px;
+padding:0px;
+}
+#hx_table_grid_header3 table td{
+/*border-right:1px solid #838383;*/
+border-right:1px solid #ACA899;
+text-align:center;
+margin:0px;
+padding:0px;
+}
+/**/
+#hx_table_page table3{
+padding-top:5px;}
+
+.hx_table_page_tn3{
+background-repeat:no-repeat;
+border:0;
+padding-left:8px;
+padding-right:10px;
+margin-left:6px;
+background-color:#D2E0F1;
+}
+
+.first_btn3{
+cursor:pointer;
+background-image:url(../images/page-first.gif);
+}
+.disabled_first_btn3{
+background-image:url(../images/page-first-disabled.gif);
+}
+
+.priv_btn3{
+cursor:pointer;
+background-image: url(../images/page-prev.gif);
+}
+.disabled_priv_btn3{
+background-image: url(../images/page-prev-disabled.gif);
+}
+
+.next_btn3{
+cursor:pointer;
+background-image: url(../images/page-next.gif);
+}
+.disabled_next_btn3{
+background-image: url(../images/page-next-disabled.gif);
+}
+.last_btn3{
+cursor:pointer;
+background-image: url(../images/page-last.gif);
+}
+.disabled_last_btn3{
+background-image: url(../images/page-last-disabled.gif);
+}
+
+.hx_table_toolbar_btn3{
+background-repeat:no-repeat;
+cursor:pointer;
+font-size:13px;
+border:0;
+padding-top:1px;
+padding-left:11px;
+background-color:#D2E0F1;
+margin:4px 2px -1px 5px;
+}
+
+/* 工具条中按钮没有图标的样式*/
+.hx_table_toolbar_btn3_2{
+background-repeat:no-repeat;
+cursor:pointer;
+font-size:13px;
+border:0;
+padding-top:1px;
+background-color:#D2E0F1;
+margin:4px 2px -1px 5px;
+}
+
+/* 工具条中按钮只有图标，没有文字的样式*/
+.hx_table_toolbar_btn3_3{
+background-repeat:no-repeat;
+cursor:pointer;
+font-size:13px;
+border:0;
+padding-top:1px;
+background-color:#D2E0F1;
+padding-right:6px;
+margin:4px 8px -1px 6px;
+}
+
+.add3{
+background-image:url(../images/add.gif);
+}
+.add_grey3{
+background-image:url(../images/add_grey.gif);
+}
+.remove3{
+background-image:url(../images/user_delete.gif);
+}
+.remove_grey3{
+background-image:url(../images/user_delete_grey.gif);
+}
+.detail3{
+background-image:url(../images/details.gif);
+}
+.detail_grey3{
+background-image:url(../images/details_grey.gif);
+}
+.delete3{
+background-image:url(../images/delete.gif);
+}
+.delete_grey3{
+background-image:url(../images/delete_grey.gif);
+}
+.excel3{
+background-image:url(../images/excel.gif);
+}
+.excel_grey3{
+background-image:url(../images/excel_grey.gif);
+}
+.doc3{
+background-image:url(../images/doc.gif);
+}
+.doc_grey3{
+background-image:url(../images/doc_grey.gif);
+}
+.query3{
+background-image:url(../images/query.gif);
+}
+.query_grey3{
+background-image:url(../images/query_grey.gif);
+}
+.rydd3{
+background-image:url(../images/rydd.gif);
+}
+.rydd_grey3{
+background-image:url(../images/rydd_grey.gif);
+}
+.closejh3{
+background-image:url(../images/closejh.gif);
+}
+.closejh_grey3{
+background-image:url(../images/closejh_grey.gif);
+}
+.group3{
+background-image:url(../images/group.gif);
+}
+.group_grey3{
+background-image:url(../images/group_grey.gif);
+}
+.zgqk3{
+background-image:url(../images/zgqk.gif);
+}
+.zgqk_grey3{
+background-image:url(../images/zgqk_grey.gif);
+}
+.hf3{
+background-image:url(../images/hf.gif);
+}
+.hf_grey3{
+background-image:url(../images/hf_grey.gif);
+}
+.cl3{
+background-image:url(../images/cl.gif);
+}
+.cl_grey3{
+background-image:url(../images/cl_grey.gif);
+}
+
+/*
+	查看报表
+*/
+.bb3{
+background-image:url(../images/bb.gif);
+}
+.bb_grey3{
+background-image:url(../images/bb_grey.gif);
+}
+
+/*
+	批量<bean:message key="button.Modify" bundle="<%=language%>"/>
+*/
+.pl_update3{
+background-image:url(../images/pl_update.gif);
+}
+.pl_update_grey3{
+background-image:url(../images/pl_update_grey.gif);
+}
+
+/*
+	批量删除
+*/
+.pl_delete3{
+background-image:url(../images/pl_delete.gif);
+}
+.pl_delete_grey3{
+background-image:url(../images/pl_delete_grey.gif);
+}
+
+/*
+	组织试卷
+*/
+.exam_paper3{
+background-image:url(../images/exam_paper.gif);
+}
+.exam_paper_grey3{
+background-image:url(../images/exam_paper_grey.gif);
+}
+
+/*
+	批量导入
+*/
+.pl_import3{
+background-image:url(../images/pl_import.gif);
+}
+.pl_import_grey3{
+background-image:url(../images/pl_import_grey.gif);
+}
+
+/*
+	培训信息
+*/
+.pxxx3{
+background-image:url(../images/pxxx.gif);
+}
+.pxxx_grey3{
+background-image:url(../images/pxxx_grey.gif);
+}
+
+.toolbar-sep3{
+background-color:#838383;
+border-bottom:1px solid #FFFFFF;
+border-right:1px solid #FFFFFF;
+display:block;
+font-size:1px;
+line-height:1px;
+height:15px;
+margin-top:5px;
+margin-bottom:2px;
+}
+.page-sep3{
+background-color:#838383;
+border-bottom:1px solid #FFFFFF;
+border-right:1px solid #FFFFFF;
+display:block;
+font-size:1px;
+line-height:1px;
+height:10px;
+}
+.jumpPage3{
+font-family:Arial, Helvetica, sans-serif;
+font-size:13px;
+white-space:nowrap;
+vertical-align:middle;
+padding-top:2px;
+}
+.jumpPage3 input{
+height:18px;
+width:25px;
+vertical-align:middle;
+}
+/*
+.hx_table_btn_bg{
+display:block;
+float:left;
+background:transparent url(../images/btnout_bg_left.gif) no-repeat scroll left center;
+}
+.hx_table_btn_bg b{
+display:block;
+float:left;
+background:transparent url(../images/btnover_bg_right.gif) no-repeat scroll right center;
+}
+
+#hx_t_form{
+	
+	margin:0px;
+	padding:0px;
+}
+*/

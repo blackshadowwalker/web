@@ -1,0 +1,177 @@
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>My JSP 'index.jsp' starting page</title>
+  </head>
+  <script type="text/javascript" src="swfupload/swfupload.js"></script>
+  <script type="text/javascript" src="swfupload/handlers.js"></script>
+  <script type="text/javascript" src="swfupload/swfupload.queue.js"></script> 
+  <script type="text/javascript" src="swfupload/swfupload.cookies.js"></script> 
+  <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+  <body >
+  <!--  -->
+		
+		<div><input type="button"  id="swfu-placeholder"  value="添加文件" ></div>
+		<input type="button" onclick="swfu.stopUpload();" value="停止上传" />
+		<input type="button" onclick="debuginfo.innerHTML = '';" value="清空Debug" />
+		<div>
+			<select id="fileList" size="10" style="width:200px;">
+			</select>
+		</div>
+		<div id="swfu-upload-progress">progress</div>
+
+		<div id="fileListOut" style="border:1px solid #0f0;width:600px;"></div>
+		<div id="swfu-upload-status">	</div>
+		
+		<div style="display:">
+			<textarea id="debug_info" cols="150" rows="22" ></textarea>
+		</div>
+
+		<script>
+			var progressE = document.getElementById('swfu-upload-progress');//文件上传进度节点
+			var statusE = document.getElementById('swfu-upload-status');//文件上传进度节点
+			var debuginfo = document.getElementById('debug_info');
+			var fileList = document.getElementById('fileList');
+
+			//文件选择窗口关闭事件处理
+			//如果有文件成功选择并添加到上传队列，则自动上传
+			var forUploadFileNum = 0;
+			var fileSum = 0;
+			function fileDialogComplete(selectedNum, queuedNum) {
+				forUploadFileNum = selectedNum;
+				fileSum = selectedNum;
+				if (queuedNum > 0) {//选择并添加到上传队列的文件数大于0
+					this.stopped = false;
+					this.startUpload();//开始上传
+					this.setButtonDisabled(true);//禁用上传按钮
+				}
+			}
+			function fileDialogStart(){
+				fileList.options.length=0;
+			}
+			function setSelect(fileName){
+				for(var i=0; i<fileList.options.length; i++){
+					if(fileName==fileList.options[i].text)
+						fileList.options[i].selected = true;
+					else
+						fileList.options[i].selected = false;
+				}
+			}
+			function uploadStart(file){
+				var postobj = { "savePath" : "videos",
+								"fileTypes" : "mp4,avi,txt",
+								"fileNum" : fileSum-forUploadFileNum
+								};
+				swfu.setPostParams(postobj);
+				swfu.setUseQueryString(true);
+				setSelect(file.name);
+			}
+			//上传过程事件处理
+			//用来动态显示文件上传进度
+			function uploadProgress(file, curBytes, totalBytes) {
+				progressE.innerHTML = ['正在上传：', file.name, '<br />总尺寸：', totalBytes, 'B<br />已上传：', curBytes, 'B<br />进度：', parseInt((curBytes/totalBytes)*100), '%'].join('');
+			}
+			
+			//上传过程中出错
+			function uploadError(file, errCode, msg) {
+				progressE.innerHTML = ['<br />文件[', file.name, ']上传出错，出错代码：[', errCode, ']，出错原因：', msg].join('');
+			//	statusE.innerHTML += ['<br />文件[', file.name, ']上传出错，出错代码：[', errCode, ']，出错原因：', msg].join('');
+			}
+			
+			//上传成功
+			function uploadSuccess(file, data) {
+				statusE.innerHTML += ['<br />文件[', file.name, ']上传成功，服务器返回信息：', data].join('');
+			//	statusE.innerHTML += ['<br />文件[', file.name, ']结束上传'].join('');
+				var fileListOut = document.getElementById('fileListOut');
+				var datas = data.split(',');
+				if(datas[1]>0){
+					fileListOut.innerHTML += ['上传成功[',file.name,',',data,']'].join('') +"<br>";
+					//write to database
+					var path = "upload/videos";
+					fileMgrBean.uploadFile(file.name, path, datas[2], {
+						callback : function(retdata) {
+							if(retdata!=1)
+								alert("上传失败!");
+						},
+						exceptionHandler : function(err_info) { alert(err_info);}
+					});
+				}
+				else
+					fileListOut.innerHTML += ['上传失败[',file.name,',',data,']'].join('') +"<br>";
+				//alert(file.name);
+			}
+			
+			//上传完成，无论上传过程中出错还是上传成功，都会触发该事件，并且在那两个事件后被触发
+			function uploadComplete(file) {
+				this.setButtonDisabled(false);//恢复上传按钮
+				forUploadFileNum--;
+				if(forUploadFileNum>0){
+					this.stopped = false;
+					this.startUpload();//开始上传
+				}
+			}
+			function debug_function(info){
+				debuginfo.value += info + '\n';
+			}
+			
+			var swfuOption = {//swfupload选项
+					//	http://10.168.1.160:8080/fileUpload/upload.jsp?savePath=test
+					upload_url:"upload.do?", //接收上传的服务端url
+					//	http://10.168.1.160:8080/fileUpload/swfupload/swfupload.swf
+					flash_url:"swfupload/swfupload.swf",//swfupload压缩包解压后swfupload.swf的url
+					
+					file_types : "*.mp4;*.avi;*.txt",//允许上传的文件类型
+					file_types_description: "Video Files",//文件类型描述
+					file_upload_limit:10,
+					file_size_limit : "0", 	
+					
+					post_params : {
+					"savePath" : "videos",
+					"fileTypes" : "mp4,avi,txt",
+					"fileNum" : "0",
+					use_query_string : true
+					},
+					
+					button_text_top_padding: 6,//文字距按钮顶部距离
+					button_text_left_padding: 65,//文字距离按钮左边距离
+					button_width: 215, //按钮宽度
+					button_height: 45, //按钮高度
+					button_text: '<span class="btn-txt">添加文件</span>',//按钮文字
+					button_text_style: '.btn-txt{color: #666666;font-size:20px;font-family:"微软雅黑"}',//按钮文字样式
+					button_image_url: "images/swfu_bgimg.jpg",//按钮背景
+					button_placeholder_id:"swfu-placeholder",
+
+					debug: true,//开启调试模式
+					debug_handler : debug_function,
+					
+					file_dialog_complete_handler: fileDialogComplete,//文件选择对话框关闭
+					upload_progress_handler: uploadProgress,//文件上传中
+					upload_error_handler: uploadError,//文件上传出错
+					upload_success_handler: uploadSuccess,//文件上传成功
+					upload_complete_handler: uploadComplete,
+					swfupload_loaded_handler: flashReady,
+					file_queued_handler: fileQueued,//当文件选择对话框关闭消失时，如果选择的文件成功加入上传队列，那么针对每个成功加入的文件都会触发一次该事件（N个文件成功加入队列，就触发N次此事件）。
+					file_dialog_start_handler: fileDialogStart,
+					upload_start_handler: uploadStart
+				}
+			var swfu=null;
+			window.onload = function(){
+				 swfu = new SWFUpload(swfuOption);
+				// swfu.stopped = false;
+			}
+			function flashReady(){
+				//alert("Flash Ready");
+				//swfu.selectFiles();
+			}
+			function fileQueued(fileName){	
+				fileList.options.add(new Option(fileName.name,fileName.name));
+			}
+			</script>
+	
+		
+  </body>
+</html>
+
+
+
