@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--  constant name="struts.devMode" value="true" /-->
+	<package name="default"  extends="struts-default"  namespace="/">
+
+    	<default-action-ref name="notFound" />
+		
+	    <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+        
+		<action name="notFound">
+		     <result>/error/error.jsp</result>
+    	 </action>
+	 
+		<action name="saveOrUpdateUser" method="saveOrUpdate" class="com.action.UserAction">
+			<result name="success" type="redirect">listUser.action</result>
+		</action>
+		<action name="listUser" method="list" class="com.action.UserAction">
+			<result name="success">/register.jsp</result>
+		</action>
+		<action name="editUser" method="edit" class="com.action.UserAction">
+			<result name="success">/register.jsp</result>
+		</action>
+		<action name="deleteUser" method="delete" class="com.action.UserAction">
+			<result name="success" type="redirect">listUser.action</result>
+		</action>
+		
+		<action name="person" method="login"  class="com.action.personAction">
+			<interceptor-ref name="defaultStack"/>
+			<result name="success" type="redirect">/success.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="login" method="login"  class="com.action.LoginAction">
+			<interceptor-ref name="defaultStack"/>
+			<result name="smallSUCCESS">/modules/login/reload.jsp?target=${target}</result>
+			<result name="smallINPUT">/modules/login/smallLogin.jsp</result>
+			<result name="success" type="redirect">/welcome.action</result>
+			<result name="input" >/modules/login/signin.jsp</result>
+		</action>
+		
+		<action name="welcome" method="welcome"  class="com.action.WelcomeAction">
+			<result name="success" type="redirect">/welcome.jsp</result>
+			<result name="login" type="redirect">login</result>
+		</action>
+		
+		<action name="regist" class="com.action.RegistAction">
+			<result name="success">/success.jsp</result>
+			<result name="input">/regist.jsp</result>
+		</action>
+		<!-- 
+		<action name="home" class="com.action.HomeAction">
+			<result name="success">/home.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="chat" class="com.action.baseAction">
+			<result name="success">/modules/chat/chat.jsp</result>
+		</action>
+		
+		<action name="*" class="com.action.baseAction">
+			<result>/example/{1}.jsp</result>
+		</action>
+		 -->
+		 
+	</package>
+</struts>    
