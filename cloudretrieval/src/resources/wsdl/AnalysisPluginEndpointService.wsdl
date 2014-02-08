@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AnalysisPluginEndpointService" targetNamespace="http://www.medianate.com/api/analysisplugins" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.medianate.com/api/analysisplugins" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.medianate.com/api/analysisplugins" elementFormDefault="unqualified" targetNamespace="http://www.medianate.com/api/analysisplugins" version="1.0">
+<xs:element name="analysisPluginDetail" type="tns:analysisPluginDetail"/>
+<xs:element name="findAllPublicPlugins" type="tns:findAllPublicPlugins"/>
+<xs:element name="findAllPublicPluginsResponse" type="tns:findAllPublicPluginsResponse"/>
+<xs:complexType name="findAllPublicPlugins">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="findAllPublicPluginsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:analysisPluginDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="analysisPluginDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="url" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="findAllPublicPlugins">
+    <wsdl:part name="parameters" element="tns:findAllPublicPlugins">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllPublicPluginsResponse">
+    <wsdl:part name="parameters" element="tns:findAllPublicPluginsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AnalysisPluginEndpoint">
+    <wsdl:operation name="findAllPublicPlugins">
+      <wsdl:input name="findAllPublicPlugins" message="tns:findAllPublicPlugins">
+    </wsdl:input>
+      <wsdl:output name="findAllPublicPluginsResponse" message="tns:findAllPublicPluginsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AnalysisPluginEndpointServiceSoapBinding" type="tns:AnalysisPluginEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findAllPublicPlugins">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findAllPublicPlugins">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllPublicPluginsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnalysisPluginEndpointService">
+    <wsdl:port name="AnalysisPluginEndpointImplPort" binding="tns:AnalysisPluginEndpointServiceSoapBinding">
+      <soap:address location="to_be_overridden_Add_?wsdl_to_the_endpoint_url_to_get_a_WSDL_with_actual_endpoint"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

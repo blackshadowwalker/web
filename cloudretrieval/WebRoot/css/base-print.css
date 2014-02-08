@@ -1,0 +1,60 @@
+body
+{
+    font-weight:bold;
+    font-style:italic;
+    font-varient:small-caps;
+    font-size:1em;
+    line-height:1.5em;
+    font-family:verdana,sans-serif;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+.columnheader
+{
+    display:none;
+}
+
+.button
+{
+    display:none;
+}
+
+.padindex
+{
+    display:none;
+}
+
+.topprompt
+{
+    display:none;
+}
+
+.hiddencontent
+{
+    display:none;
+}
+
+.cardname
+{
+    display:none;
+}
+
+.TDLeft span
+{
+    display:none;
+}
+
+input
+{
+    border:0px;
+}
+
+select
+{
+    border:0px;
+}
+

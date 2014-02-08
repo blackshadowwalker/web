@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="database/|resources/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/resources/wsdl"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_21"/>
+	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_AOP"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_PERSISTENCE_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_PERSISTENCE_JDBC"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_WEB"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

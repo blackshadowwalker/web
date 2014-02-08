@@ -1,0 +1,66 @@
+body
+{
+margin: 0px;
+color: #000;
+font: Verdana, Arial;
+font-size: 12;
+}
+div
+{
+font: Verdana, Arial;
+font-size: 12;
+}
+span
+{
+font: Verdana, Arial;
+font-size: 12;
+}
+td
+{
+font-family: Verdana, Arial;
+font-size: 70%;
+}
+table
+{
+border: 0 0 0 0;
+}
+img
+{
+border: 0;
+}
+
+
+
+a
+{
+font-weight: normal;
+text-decoration: none;
+color: #000000;
+}
+a:hover
+{
+text-decoration: underline;
+color: #000000;
+}
+.menu {
+position:absolute;
+font-size:14px;
+color: #000000;
+font-family: "ËÎÌו";
+text-align:left;
+border: #ACA899 dashed 0px;
+background:url(../image/shadow.gif) no-repeat right bottom;
+	
+}
+
+#shadow{
+bgcolor:#fff;
+cellspacing:2px;
+display:block;
+position:relative;
+width:130px;
+border-collapse:collapse;
+border:0px solid #666;
+margin:-5px 5px 5px -5px;
+
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+  "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+    
+<tiles-definitions>
+
+  <definition name="logon.view" path="/layout0.jsp">
+    <put name="logon.body" value="/jsp/base/logon_body.jsp"/>
+    <put name="logon.bottom" value="/jsp/base/bottom.jsp"/>
+  </definition>
+ <!--
+  <definition name="main.view" path="/layout1.jsp">
+    <put name="main.top" value="/jsp/base/main_top.jsp"/>
+    <put name="main.nav" value="/jsp/base/main_nav.jsp"/>
+    <put name="main.span" value="/jsp/base/main_span.jsp"/>
+    <put name="main.menu" value="/jsp/base/main_menu.jsp"/>
+    <put name="main.body" value="/jsp/base/main_body.jsp"/>
+    <put name="main.bottom" value="/jsp/base/bottom.jsp"/>
+  </definition>
+ -->
+  
+
+</tiles-definitions>

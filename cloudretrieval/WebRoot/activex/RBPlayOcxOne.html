@@ -1,0 +1,478 @@
+<HTML>
+<HEAD>
+<TITLE>Play</TITLE>
+<style>
+.spanTitle{
+	font-weight:bold;
+	color:#00aa00;
+}
+.spanText{
+	font-weight:bold;
+	color:#001122;
+	width:80px; 
+}
+.btClass{
+	width:100px;
+}
+.inputClass
+{
+	width:100px;
+}
+select
+{
+	width:80px;
+}
+.listView
+{
+	width:450px;
+}
+.MainTable{ 
+	border-collapse:collapse; 
+	width:90%; 
+	border:1px #00aa00 solid;
+}
+.MainTable td{ 
+	border:1px #ffaaaa solid;
+}
+.SubTable
+{
+	border-collapse:collapse; 
+}
+.SubTable td
+{
+	border-collapse:collapse; 
+	border:1px #aaeeff solid;
+}
+</style>
+</HEAD>
+<BODY>
+<center>
+
+<table class="MainTable" width="1000" height="600"  >
+	<tr height="50px" width="100%">
+		<td colspan=1 width=300px>	
+			<span class=spanTitle >PlayOcx</span>
+			<div style="display:none">
+				<input type="button"  class="btClass" onclick="showOcx(1)" value="显示 ">
+				<input type="button"  class="btClass" onclick="showOcx(0)" value="隐藏 ">
+			</div>
+		</td>
+		<td>
+			<input type="button"  class="" onclick="BtPlay(this)" value="播放" id="i_btPlay">
+			<input type="button"  class="" onclick="BtStop()" value="停止">
+			<input type="button"  class="" onclick="BtSlow()" value="慢放">
+			<input type="button"  class="" onclick="BtNormal()" value="正常">
+			<input type="button"  class="" onclick="BtFast()" value="快放">
+			<input type="button"  class="" onclick="BtFramePlay()" value="帧进">
+			<input type="button"  class="" onclick="Init()" value="Init">
+		</td>
+	</tr>
+	<tr align="left" valign="top" >
+		<td width="300" height="80px">
+			<div width="100%">
+			  <table class="SubTable" heigth="100%"  width="100%"  >
+				  <tr heigth="100%"  width="100%">
+				  <td width=400px>
+					<span class="spanTitle" style="width:200px" >登陆</span><br>
+					<span  class="spanText"> Ip:</span > 		<input type="text"  class="inputClass" size=20 value="192.168.1.117" name="ip" id="i_ip"><br>
+					<span  class="spanText"> Port:</span > 		<input type="text"  class="inputClass" size=20 value="37777" name="port" id="i_port"><br>
+					<span  class="spanText">userName:</span > 	<input type="text"  class="inputClass" size=20 value="admin" name="userName" id="i_userName"><br>
+					<span  class="spanText">passWord:</span > 	<input type="password"  class="inputClass" size=20 value="admin" name="password" id="i_password"><br>
+					<span  class="spanText">&nbsp;</span > 
+					<input type="button" id="i_btLogin" onclick="Login()" value="登陆">
+					<input type="button" id="i_btLogoff" onclick="LogOff()" value="注销">
+				  </td>
+				  <td  width=100px>
+					width:<input type="text"  size=5 class="" id="i_ocxWidth" value=400 >
+					heith:<input type="text"  size=5 class="" id="i_ocxHeight" value=300 >
+					<input type="button"  class="btClass" onclick="setWH()" value="调整大小">
+					<br>
+					<input type="button"  class="btClass" onclick="fullScreen()" value="全屏">
+				  </td>
+				  <td colspan=2 valign="top">
+					
+					<span  class="spanText">摄 像 头:</span>
+					<select id="i_CameraId" style="width:150px">
+						<option value="0" selected>普通(192.168.1.112)</option>
+						<option value="1" >高清(192.168.1.116)</option>
+						<option value="2" >高清2</option>
+					</select>
+					<br>
+					<span  class="spanText">墙面通道:</span>
+					<select id="i_ScreenId">
+						<option value="1" selected>1</option>
+						<option value="2" >2</option>
+						<option value="3" >3</option>
+						<option value="4" >4</option>
+					</select>
+					<br>
+					<hr size=2 color = "green">
+					
+					<span class="spanTitle" style="width:290px">实时播放</span><br>
+					<input type="button"  class="btClass" onclick="OpenCamera()" value="打开摄像头">
+					<input type="button"  class="btClass" onclick="CloseCamera()" value="关闭摄像头">
+					
+					</td>
+				  </tr>
+			  </table>									
+			</div>
+		</td>
+		<td rowspan=5 width=1000px valign="top">
+			<table border=1>
+			<tr>
+			  <td>
+			  
+				<div id="i_ocx" style="display:" width="200" height="200">
+					<OBJECT ID="ocxweb1" WIDTH=200 HEIGHT=220 
+					    CODEBASE="http://10.168.1.200/teleframe/Release/ocx/RBPlayOcx.cab#version=1,0,0,1"
+						CLASSID="CLSID:71494FD4-6A91-4474-A144-06466A6C955B"
+					>
+					</OBJECT>
+				</div>
+			  </td>
+			  
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr valign="top" height="20">
+		
+	</tr>
+	<tr>
+		<td width="600px" vtop="top">
+			<span class="spanTitle">远程回放 By Time</span>
+			<br>
+			<span  class="spanText">Mode:</span>
+			<select id="i_modeIndexByTime" style="width:150px">
+				<option value="0" selected>Direct</option>
+				<option value="1" >callback</option>
+			</select>
+			<br>
+			<span class="spanText">开始时间:</span>
+			<input type="text" value="2012-12-12 10:14:00" id="i_startDataTimeByTime">
+			<br>
+			<span class="spanText">结束时间:</span>
+			<input type="text" value="2012-12-12 10:40:00" id="i_endDataTimeByTime">
+			<br>
+			<input type="button"  class="" onclick="playByTime()" value="播放">
+			<input type="button"  class="" onclick="DownloadByTime()" value="下载">
+			<br>
+			
+			<br>
+			
+		</td >
+	</tr>
+	<tr>
+		<td width="600px">
+			<span class="spanTitle">远程回放 By File</span>
+
+			<br>
+			<span  class="spanText">Mode:</span>
+			<select id="i_modeIndex">
+				<option value="0" selected>Direct</option>
+				<option value="1" >callback</option>
+			</select>
+			<br>
+			<span class="spanText">Type:</span>
+			<select id="i_typeIndex">
+				<option value="0" selected>Common</option>
+				<option value="1" >Alarm</option>
+			</select>
+			<br>
+			<span class="spanText">	开始时间:</span>
+			<input type="text" value="2012-12-11 15:10:00" name="startDataTime" id="i_startDataTime">
+			<br>
+			<span class="spanText">结束时间:</span>
+			<input type="text" value="2012-12-11 18:11:00" name="endDataTime" id="i_endDataTime">
+			<br>
+			<input type="button"  class="" onclick="Query()" value="">
+			<input type="button"  class="" onclick="playByFile()" value="播放">
+			<input type="button"  class="" onclick="DownLoadByFile(this)" value="下载">
+			<br>
+			<select id="i_fileList" class="listView" name="fileList" 
+				onchange="" ondblclick="playByFile()" size=6 >
+				<option value="0">Index &nbsp;&nbsp;  FileSize &nbsp;&nbsp; startTime &nbsp;&nbsp;  endTime &nbsp;&nbsp; </option>
+			</select>
+			<br>
+			
+		</td >
+	</tr>
+
+	<tr>
+		<td colspan=2>
+		
+		</td>
+	</tr>
+</table>
+
+<script>
+function fullScreen()
+{
+	var ocxweb = getOcxweb();
+	var width = document.getElementById("i_ocxWidth").value;
+	var height = document.getElementById("i_ocxHeight").value;
+//	ocxweb.KMoveWindow(0,0, width, height);
+//	document.getElementById("ocxweb").width = width;
+//	document.getElementById("ocxweb").height = height;
+	width = screen.width;	height = screen.height;
+	ocxweb.FullScreen(0,0, width, height);
+}
+function setWH()
+{
+	var ocxweb = getOcxweb();
+	var width = document.getElementById("i_ocxWidth").value;
+	var height = document.getElementById("i_ocxHeight").value;
+	ocxweb.KMoveWindow(0,0, width, height+20);
+	ocxweb.width = width;
+	ocxweb.height = height;
+}
+function Init()
+{
+	var ocxweb = getOcxweb();
+	ocxweb.KMoveWindow(0,0, 200, 200+20);
+}
+function getOcxweb()
+{
+	var screenId = document.getElementById("i_ScreenId").selectedIndex+1;
+	var screen = "ocxweb"+screenId.toString();
+	var ocxweb = document.getElementById(screen);
+	return ocxweb;
+}
+function OpenCamera()
+{
+	var cameraId = document.getElementById("i_CameraId");
+	if(cameraId==null)
+	{
+		alert("请选择摄像头");
+		return ;
+	}
+	
+	var ocxweb = getOcxweb();
+	var hr = ocxweb.RBStartRealPlay("", cameraId.selectedIndex, 0);
+	if(hr==-1)
+		alert("该摄像头目前没连接");
+}
+function CloseCamera()
+{
+	var ocxweb = getOcxweb();
+	ocxweb.RBStopRealPlay("",0,0);
+}
+function DownLoadByFile(con)
+{
+	var fileList = document.getElementById("i_fileList");
+	var index = fileList.selectedIndex;
+	if(index<1)
+	{
+		alert("请选择文件");
+		return;
+	}
+	
+	var ocxweb = getOcxweb();
+	var info = ocxweb.DownLoadByFile(fileList.options[index].value);
+	if(con.value=="停止")
+		con.value="下载";
+	else
+		con.value="停止";
+}
+function DownloadByTime()
+{
+	var cameraIndex = document.getElementById("i_CameraId").selectedIndex;
+	var startTime = document.getElementById("i_startDataTimeByTime").value;
+	var endTime = document.getElementById("i_endDataTimeByTime").value;
+	if(cameraIndex<0)
+	{
+		alert("请选择摄像头");
+		return;
+	}
+	var ocxweb = getOcxweb();
+	var info = ocxweb.KDownloadByTime( cameraIndex, startTime, endTime);
+}
+
+function playByFile()
+{
+	var fileList = document.getElementById("i_fileList");
+	var index = fileList.selectedIndex;
+	if(index<1)
+	{
+		alert("请选择文件");
+		return;
+	}
+	var ocxweb = getOcxweb();
+	ocxweb.PlayByFile(fileList.options[index].value);
+	document.getElementById("i_btPlay").value="暂停";
+}
+function playByTime()
+{
+	var cameraIndex = document.getElementById("i_CameraId").selectedIndex;
+	var modeIndex = document.getElementById("i_modeIndexByTime").selectedIndex;
+	var startTime = document.getElementById("i_startDataTimeByTime").value;
+	var endTime = document.getElementById("i_endDataTimeByTime").value;
+	if(cameraIndex<0)
+	{
+		alert("请选择摄像头");
+		return;
+	}
+//	alert("startTime: "+startTime+"  endTime:"+endTime);
+	var ocxweb = getOcxweb();
+	var ret = ocxweb.KPlaybackByTime(cameraIndex, 0, 0, startTime, endTime);
+	document.getElementById("i_btPlay").value="暂停";
+}
+function BtPlay(con)
+{
+	var ocxweb = getOcxweb();
+	ocxweb.Play();
+	if(con.value=="播放")
+		con.value="暂停";
+	else 
+		con.value="播放";
+}
+function BtStop()
+{
+	var ocxweb = getOcxweb();
+	ocxweb.StopPlay();
+	document.getElementById("i_btPlay").value="播放";
+}
+function BtSlow()
+{
+	var ocxweb = getOcxweb();
+	ocxweb.SlowPlay();
+}
+function BtNormal()
+{
+	var ocxweb = getOcxweb();
+	ocxweb.NormalPlay();
+}
+function BtFast()
+{
+	var ocxweb = getOcxweb();
+	ocxweb.FastPlay();
+}
+function BtFramePlay()
+{
+	var ocxweb = getOcxweb();
+	ocxweb.FramePlay();
+}
+function Query()
+{
+	var cameraIndex = document.getElementById("i_CameraId").selectedIndex;
+	var modeIndex = document.getElementById("i_modeIndex").selectedIndex;
+	var typeIndex = document.getElementById("i_typeIndex").selectedIndex;
+	
+	var startTime = document.getElementById("startDataTime").value;
+	var endTime = document.getElementById("endDataTime").value;
+	var ocxweb = getOcxweb();
+	var list = ocxweb.QueryPlaybackList(cameraIndex,modeIndex,typeIndex,startTime, endTime);
+//	alert(list);
+	var fileList = document.getElementById("i_fileList");
+	for(var k=fileList.options.length-1; k>0; k--)
+	{
+		fileList.options.remove(k);
+	}
+
+	var fileLists = list.split("<R>");
+	for(var i=0; i<fileLists.length-1; i++)
+	{
+		var optionValue="";
+		var temp="";
+		var files = fileLists[i].split("<C>");
+
+		temp = files[0];  optionValue += temp.replace(/\ /g,"") + "    ";
+		temp = files[2];  optionValue += temp.replace(/\ /g,"") + "    ";
+		temp = files[3];  optionValue += temp.replace(/\ /g,"") + "    ";
+		temp = files[4];  optionValue += temp.replace(/\ /g,"") + "    ";
+		
+		optionValue = optionValue.replace(/\year/g,"-");
+		optionValue = optionValue.replace(/\month/g,"-");
+		optionValue = optionValue.replace("day"," ");
+		optionValue = optionValue.replace("day"," ");
+		fileList.add(new Option(optionValue,i)); 
+	}
+	
+}
+function Login()
+{
+	var ip = document.getElementById("i_ip");
+	var port = document.getElementById("i_port");
+	var userName = document.getElementById("i_userName");
+	var passWord = document.getElementById("i_passWord");
+	if(ip!=null && ip!="")
+	{
+		;
+	}
+	else
+	{
+		return;
+	}
+	var index = document.getElementById("i_ScreenId").selectedIndex;
+	for(var i=0; i<4; i++)
+	{
+		document.getElementById("i_ScreenId").selectedIndex = i;
+		var ocxweb = getOcxweb();
+		var isOk = ocxweb.Login(ip.value,
+								port.value,
+								userName.value,
+								passWord.value,
+								0
+								);
+	//	alert(isOk);
+		if(isOk)
+		{
+			document.getElementById("i_btLogin").disabled= true;
+			document.getElementById("i_btLogoff").disabled= false;
+		}
+		else
+		{
+			document.getElementById("i_btLogin").disabled= false;
+			document.getElementById("i_btLogoff").disabled= true;
+			break;
+		}
+	}
+	document.getElementById("i_ScreenId").selectedIndex = index;
+	
+	
+}
+function LogOff()
+{
+	var ocxweb = getOcxweb();
+	
+	var index = document.getElementById("i_ScreenId").selectedIndex;
+	for(var i=0; i<4; i++)
+	{
+		document.getElementById("i_ScreenId").selectedIndex = i;
+		var ocxweb = getOcxweb();
+		ocxweb.LogOff();
+	}
+	document.getElementById("i_ScreenId").selectedIndex = index;
+	
+	document.getElementById("i_btLogin").disabled= false;
+	document.getElementById("i_btLogoff").disabled= true;
+}
+
+function showOcx(isShow)
+{
+	var ocxweb = getOcxweb();
+	if(isShow==1)
+	{
+		ocxweb.showControls(true);
+		document.getElementById("ocxweb").width=600;
+		document.getElementById("ocxweb").height=550;
+	}
+	else 
+	{	
+		ocxweb.showControls(false);
+	}
+}
+
+
+</script>
+
+</center>
+
+<!--
+打开浏览器-工具 - internet选项-内容- 证书-把【中级证书颁发机构】里的该（）证书导出来-
+再把导出来的证书导入【受信任的根证书颁发机构】 
+就OK了
+-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mbank" basedir="." default="start">
+	
+	<property name="project.title" value="SD Blank"/>
+	<property name="project.name" value="Mbank"/>
+	<property name="project.version" value="1.0"/>
+	<property name="project.src" value="./src"/>
+	<property name="project.disc" value="./classes"/>
+	<property name="project.lib" value="./lib"/>
+	<property name="project.common" value="../../../common/lib"/>
+	
+	<path id="compile.classpath">
+	
+		<fileset dir="${project.lib}">
+			
+			<include name="**/*.jar"/>
+			
+		</fileset>
+		
+		<fileset dir="${project.common}">
+					
+			<include name="**/*.jar"/>
+			
+		</fileset>
+		
+	</path>
+	
+	<target name="clean" description="Clean Class File">
+		
+		<delete dir="${project.disc}"/>
+		
+		<mkdir dir="${project.disc}"/>
+		
+	</target>
+	
+	<target name="resources">
+	
+		<copy todir="${project.disc}" includeEmptyDirs="no">
+			
+			<fileset dir="${project.src}">
+			
+				<include name="**/*.conf"/>
+				<include name="**/*.properties"/>
+				<include name="**/*.xml"/>
+				
+			</fileset>
+			
+		</copy>
+		
+	</target>
+	
+	<target name="compile" depends="resources">
+		
+		<javac srcdir="${project.src}" destdir="${project.disc}" includes="**/*.java" source="1.4" encoding="GBK">
+			
+			<classpath refid="compile.classpath"></classpath>
+			
+		</javac>
+		
+	</target>
+	
+	<target name="start" depends="clean,compile"></target>
+</project>

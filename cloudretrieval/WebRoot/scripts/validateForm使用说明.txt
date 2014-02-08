@@ -1,0 +1,37 @@
+
+表单验证tag标签,通过在验证的表单域添加自定义tag，通过不同的tag进行相应的数据验证。
+
+表单验证标志：isValidate="true"
+字段名：msg="姓名"
+非空验证：notEmpty="true"
+数值验证：isNum="true"
+自然数验证：isNatrual="true"
+整数验证：isInteger="true"
+实数验证：isSignFloat="true"
+正实数验证：isFloat="true"
+英文字符验证：isEnglish="true"
+中文字符验证：isChinese="true"
+英文或数值字符验证：isCharOrNum="true"
+电话号码验证：isPhone="true"
+移动电话验证：isMobile="true"
+Email校验：isEmail="true"
+邮政编码校验：isPost="true"
+url地址校验：isUrl="true"
+IP地址验证:isIp="true"
+指定文件格式校验：fileFormat="gif|jpg|bmp|txt"
+时间格式校验（验证格式为HH:mm:ss、HH:mm、HH）：isTime="true"
+日期验证（校验格式有：yyyyMMdd、yyyy-MM-dd、yyyy_MM_dd、yyyy/MM/dd 外加时分秒或时分,格式为HH:mm:ss或HH:mm） isDate="true" dateFormat="yyyyMMdd"  endDate="结束时间ID"
+双精度验证：numberFormat="整数长度,小数长度"
+身份证验证：isIDCard="true"
+重复输入相同值：confirmSameValue="要对比的对象name"
+不能重复输入相同值：confirmDifferValue="要对比的对象name"
+自定义checkbox选择个数(max、min为可选参数)：isGroup="true" min="至少选择的个数" max="至多选择的个数" groupName="checkboxname"
+特殊字符校验：notSpecial="true"  specialChar="~!@#$%^&*()_+|?"  
+替换特殊字符为全角字符：replaceChar="true" specialChar="~!@#$%^&*()_+|?"
+最大长度范围验证：leng="数字"
+最小长度范围验证：minLeng="数字"
+
+提交表单验证方法
+if(!$("#formId").validateForm()){
+return;
+}

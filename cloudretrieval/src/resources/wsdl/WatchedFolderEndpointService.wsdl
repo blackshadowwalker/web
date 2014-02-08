@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="WatchedFolderEndpointService" targetNamespace="http://www.medianate.com/api/watchedfolders" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.medianate.com/api/watchedfolders" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.medianate.com/api/watchedfolders" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.medianate.com/api/watchedfolders">
+  <xs:element name="createWatchedFolderByProfile" type="tns:createWatchedFolderByProfile"/>
+  <xs:element name="createWatchedFolderByProfileResponse" type="tns:createWatchedFolderByProfileResponse"/>
+  <xs:element name="deleteWatchedFolder" type="tns:deleteWatchedFolder"/>
+  <xs:element name="deleteWatchedFolderResponse" type="tns:deleteWatchedFolderResponse"/>
+  <xs:element name="disableWatchedFolder" type="tns:disableWatchedFolder"/>
+  <xs:element name="disableWatchedFolderResponse" type="tns:disableWatchedFolderResponse"/>
+  <xs:element name="enableWatchedFolder" type="tns:enableWatchedFolder"/>
+  <xs:element name="enableWatchedFolderResponse" type="tns:enableWatchedFolderResponse"/>
+  <xs:element name="findAllWatchedFolders" type="tns:findAllWatchedFolders"/>
+  <xs:element name="findAllWatchedFoldersResponse" type="tns:findAllWatchedFoldersResponse"/>
+  <xs:element name="getWatchedFolderDetail" type="tns:getWatchedFolderDetail"/>
+  <xs:element name="getWatchedFolderDetailResponse" type="tns:getWatchedFolderDetailResponse"/>
+  <xs:element name="updateWatchedFolder" type="tns:updateWatchedFolder"/>
+  <xs:element name="updateWatchedFolderResponse" type="tns:updateWatchedFolderResponse"/>
+  <xs:element name="watchedFolderDetail" type="tns:watchedFolderDetail"/>
+  <xs:complexType name="enableWatchedFolder">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enableWatchedFolderResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getWatchedFolderDetail">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getWatchedFolderDetailResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:watchedFolderDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="watchedFolderDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="destinationMrlPattern" type="xs:string"/>
+      <xs:element name="enabled" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="filenamePatterns" type="xs:string"/>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="lastManifestUrl" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+      <xs:element name="multiFile" type="xs:boolean"/>
+      <xs:element name="profileId" type="xs:long"/>
+      <xs:element name="sequential" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="username" type="xs:string"/>
+      <xs:element minOccurs="0" name="watchedFolderUrl" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createWatchedFolderByProfile">
+    <xs:sequence>
+      <xs:element name="profileId" type="xs:long"/>
+      <xs:element minOccurs="0" name="watchedFolderUrl" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationMrlPattern" type="xs:string"/>
+      <xs:element minOccurs="0" name="filenamePatterns" type="xs:string"/>
+      <xs:element name="multiFile" type="xs:boolean"/>
+      <xs:element name="sequential" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="username" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createWatchedFolderByProfileResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:watchedFolderDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAllWatchedFolders">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="findAllWatchedFoldersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:watchedFolderDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="disableWatchedFolder">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="disableWatchedFolderResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="deleteWatchedFolder">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteWatchedFolderResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="updateWatchedFolder">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="watchedFolderUrl" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationMrlPattern" type="xs:string"/>
+      <xs:element minOccurs="0" name="filenamePatterns" type="xs:string"/>
+      <xs:element name="profileId" type="xs:long"/>
+      <xs:element name="multiFile" type="xs:boolean"/>
+      <xs:element name="sequential" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="username" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateWatchedFolderResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="WatchedFolderNotFoundException" type="tns:WatchedFolderNotFoundException"/>
+  <xs:complexType name="WatchedFolderNotFoundException">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="UserNotFoundException" type="tns:UserNotFoundException"/>
+  <xs:complexType name="UserNotFoundException">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="SchlitterException" type="tns:SchlitterException"/>
+  <xs:complexType name="SchlitterException">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="updateWatchedFolder">
+    <wsdl:part name="parameters" element="tns:updateWatchedFolder">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createWatchedFolderByProfileResponse">
+    <wsdl:part name="parameters" element="tns:createWatchedFolderByProfileResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disableWatchedFolder">
+    <wsdl:part name="parameters" element="tns:disableWatchedFolder">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateWatchedFolderResponse">
+    <wsdl:part name="parameters" element="tns:updateWatchedFolderResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WatchedFolderNotFoundException">
+    <wsdl:part name="WatchedFolderNotFoundException" element="tns:WatchedFolderNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllWatchedFoldersResponse">
+    <wsdl:part name="parameters" element="tns:findAllWatchedFoldersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="enableWatchedFolderResponse">
+    <wsdl:part name="parameters" element="tns:enableWatchedFolderResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SchlitterException">
+    <wsdl:part name="SchlitterException" element="tns:SchlitterException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disableWatchedFolderResponse">
+    <wsdl:part name="parameters" element="tns:disableWatchedFolderResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteWatchedFolderResponse">
+    <wsdl:part name="parameters" element="tns:deleteWatchedFolderResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllWatchedFolders">
+    <wsdl:part name="parameters" element="tns:findAllWatchedFolders">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createWatchedFolderByProfile">
+    <wsdl:part name="parameters" element="tns:createWatchedFolderByProfile">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteWatchedFolder">
+    <wsdl:part name="parameters" element="tns:deleteWatchedFolder">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWatchedFolderDetailResponse">
+    <wsdl:part name="parameters" element="tns:getWatchedFolderDetailResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="enableWatchedFolder">
+    <wsdl:part name="parameters" element="tns:enableWatchedFolder">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWatchedFolderDetail">
+    <wsdl:part name="parameters" element="tns:getWatchedFolderDetail">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserNotFoundException">
+    <wsdl:part name="UserNotFoundException" element="tns:UserNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WatchedFolderEndpoint">
+    <wsdl:operation name="enableWatchedFolder">
+      <wsdl:input name="enableWatchedFolder" message="tns:enableWatchedFolder">
+    </wsdl:input>
+      <wsdl:output name="enableWatchedFolderResponse" message="tns:enableWatchedFolderResponse">
+    </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException" message="tns:WatchedFolderNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getWatchedFolderDetail">
+      <wsdl:input name="getWatchedFolderDetail" message="tns:getWatchedFolderDetail">
+    </wsdl:input>
+      <wsdl:output name="getWatchedFolderDetailResponse" message="tns:getWatchedFolderDetailResponse">
+    </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException" message="tns:WatchedFolderNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createWatchedFolderByProfile">
+      <wsdl:input name="createWatchedFolderByProfile" message="tns:createWatchedFolderByProfile">
+    </wsdl:input>
+      <wsdl:output name="createWatchedFolderByProfileResponse" message="tns:createWatchedFolderByProfileResponse">
+    </wsdl:output>
+      <wsdl:fault name="UserNotFoundException" message="tns:UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="SchlitterException" message="tns:SchlitterException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllWatchedFolders">
+      <wsdl:input name="findAllWatchedFolders" message="tns:findAllWatchedFolders">
+    </wsdl:input>
+      <wsdl:output name="findAllWatchedFoldersResponse" message="tns:findAllWatchedFoldersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableWatchedFolder">
+      <wsdl:input name="disableWatchedFolder" message="tns:disableWatchedFolder">
+    </wsdl:input>
+      <wsdl:output name="disableWatchedFolderResponse" message="tns:disableWatchedFolderResponse">
+    </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException" message="tns:WatchedFolderNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteWatchedFolder">
+      <wsdl:input name="deleteWatchedFolder" message="tns:deleteWatchedFolder">
+    </wsdl:input>
+      <wsdl:output name="deleteWatchedFolderResponse" message="tns:deleteWatchedFolderResponse">
+    </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException" message="tns:WatchedFolderNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateWatchedFolder">
+      <wsdl:input name="updateWatchedFolder" message="tns:updateWatchedFolder">
+    </wsdl:input>
+      <wsdl:output name="updateWatchedFolderResponse" message="tns:updateWatchedFolderResponse">
+    </wsdl:output>
+      <wsdl:fault name="UserNotFoundException" message="tns:UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="WatchedFolderNotFoundException" message="tns:WatchedFolderNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="SchlitterException" message="tns:SchlitterException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WatchedFolderEndpointServiceSoapBinding" type="tns:WatchedFolderEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="enableWatchedFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="enableWatchedFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="enableWatchedFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException">
+        <soap:fault name="WatchedFolderNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getWatchedFolderDetail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getWatchedFolderDetail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getWatchedFolderDetailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException">
+        <soap:fault name="WatchedFolderNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createWatchedFolderByProfile">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createWatchedFolderByProfile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createWatchedFolderByProfileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SchlitterException">
+        <soap:fault name="SchlitterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="disableWatchedFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="disableWatchedFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="disableWatchedFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException">
+        <soap:fault name="WatchedFolderNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllWatchedFolders">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findAllWatchedFolders">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllWatchedFoldersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteWatchedFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteWatchedFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteWatchedFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WatchedFolderNotFoundException">
+        <soap:fault name="WatchedFolderNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateWatchedFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateWatchedFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateWatchedFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="WatchedFolderNotFoundException">
+        <soap:fault name="WatchedFolderNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SchlitterException">
+        <soap:fault name="SchlitterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WatchedFolderEndpointService">
+    <wsdl:port name="WatchedFolderEndpointImplPort" binding="tns:WatchedFolderEndpointServiceSoapBinding">
+      <soap:address location="to_be_overridden_Add_?wsdl_to_the_endpoint_url_to_get_a_WSDL_with_actual_endpoint"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

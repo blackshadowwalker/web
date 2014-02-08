@@ -1,0 +1,290 @@
+<HTML>
+<HEAD>
+<TITLE>ITSconfig</TITLE>
+<style>
+.spanTitle{
+	font-weight:bold;
+	color:#00aa00;
+}
+.spanText{
+	font-weight:bold;
+	color:#001122;
+	width:80px; 
+}
+.btClass{
+	width:100px;
+}
+.inputClass
+{
+	width:100px;
+}
+select
+{
+	width:80px;
+}
+.listView
+{
+	width:450px;
+}
+.MainTable{ 
+	border-collapse:collapse; 
+	width:90%; 
+	border:1px #00aa00 solid;
+}
+.MainTable td{ 
+	border:1px #ffaaaa solid;
+}
+.SubTable
+{
+	border-collapse:collapse; 
+}
+.SubTable td
+{
+	border-collapse:collapse; 
+	border:1px #aaeeff solid;
+}
+</style>
+
+</style>
+</HEAD>
+<BODY>
+<center>
+<br>
+
+<table class="MainTable" width="800" height="400" border=1>
+	<tr>
+		<td colspan=2>
+			<div align="center" class = spanTitle>ITS config </div>
+		</td>
+	</tr>
+	<tr align="left" valign="top" >
+		<td width="100%" height="80px">
+			<input type="button"  class="btClass" onclick="SetFtp()" value="设置FTP">
+			<input type="button"  class="btClass" onclick="DownLoadInfo()" value="下载配置文件">
+			<input type="button"  class="btClass" onclick="UpLoadInfo()" value="上传配置文件">
+			<br>
+			<input type="button"  class="btClass" onclick="SetLan()" value="车道配置">
+			<input type="hidden"  class="btClass" onclick="SetOperate()" value="操作配置">
+			<input type="hidden"  class="btClass" onclick="SetTimes()" value="时间段配置">
+			<br>
+			<input type="button"  class="btClass" onclick="showOcx(1)" value="显示控件">
+			<input type="button"  class="btClass" onclick="showOcx(0)" value="隐藏控件">
+		</td>
+		<td rowspan=5>
+			<div id="i_ocx" >
+				<OBJECT ID="ocxweb" WIDTH=100 HEIGHT=100  
+				    CODEBASE="http://10.168.1.200/teleframe/Release/ocx/ITSconfig.cab#version=1,0,0,2"
+					CLASSID="CLSID:96DFD642-58FD-445F-88A1-9DAD04C879B9"
+				 >
+				</OBJECT>
+			</div>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td>
+			<span class="spanText"> Ip:</span> 		<input type="text"  class="inputClass" size=20 value="10.168.1.200" name="ip" id="i_ip"><br>
+			<span class="spanText"> Port:</span> 	<input type="text"  class="inputClass" size=20 value="21" name="port" id="i_port"><br>
+			<span class="spanText">userName:</span> 	<input type="text"  class="inputClass" size=20 value="admin" name="userName" id="i_userName"><br>
+			<span class="spanText">passWord:</span> 	<input type="text"  class="inputClass" size=20 value="admin" name="password" id="i_password"><br>
+			<span class="spanText">本地目录:</span> 	<input type="text"  class="inputClass" size=20 value="d:\temp" name="localPath" id="i_localPath"><br>
+			<span class="spanText">摄像头:</span> 	<input type="text"  class="inputClass" size=20 value="camera_1" name="cameraName" id="i_cameraName"><br>
+			<span class="spanText">文件数量:</span> 	<input type="text"  class="inputClass" size=20 value="4" name="fileSum" id="i_fileSum"><br>
+			<span class="spanText">文件列表:</span> 	<input type="text"  class="inputClass" size=20 value="cPicCfg.bmp"/>
+			<R>LaneConfig.dat<R>OperateConfig.dat<R>Event_CHD<R>" 
+			name="fileList" id="i_fileList">
+			(<span color=red>以&lt;R&gt;分割</span>)<br>
+			<span>&nbsp;</span>	<input type="button"  class="btClass" onclick="SetInfo()" value="   应用  ">
+			<span>&nbsp;</span>	<input type="button"  class="btClass" onclick="GetInfo()" value="   获得Ftp配置   ">
+			<span>&nbsp;</span>	<input type="button"  class="btClass" onclick="setCameraList()" value="   OpenImage   ">
+		</td>
+	</tr>
+	
+</table>
+<center>
+
+
+<SCRIPT>
+function OpenImage()
+{
+	ocxweb.OpenImage();
+}
+function setCameraList()
+{
+	var cameraList = new Array();
+	cameraList.push("PZC2LW24100059");
+	cameraList.push("PZC1LW04300068");
+	cameraList.push("P2C2KW44600026");
+	cameraList.push("PZC2BW32600095");
+	cameraList.push("PZC2KW44600026");
+	cameraList.push("00000000000000");
+	ocxweb.SetCameras(cameraList.join("<C>"));
+}
+
+ocxweb.attachEvent("onReady",function(){
+	//控件初始化完成返回的事件onReady
+	var w = ocxweb.GetWidth();
+	var h = ocxweb.GetHeight();
+	document.getElementById("ocxweb").width=w;
+	document.getElementById("ocxweb").height=h;
+	GetInfo();//获得Ftp配置
+	setCameraList();
+//	ocxweb.DownLoadConfig();
+});
+
+function SetInfo()
+{
+	var ip = document.getElementById("i_ip");
+	var port = document.getElementById("i_port");
+	var userName = document.getElementById("i_userName");
+	var passWord = document.getElementById("i_passWord");
+//	var ftpPath = document.getElementById("i_ftpPath");
+	var localPath = document.getElementById("i_localPath");
+	var cameraName = document.getElementById("i_cameraName");
+	var fileSum = document.getElementById("i_fileSum");
+	var fileList = document.getElementById("i_fileList");
+	
+	if(ip!=null && ip.value!="")
+	{
+		
+	}
+	else{
+		alert("请输入IP");
+		return ;
+	}
+	var info="";
+	info += ip.value +"   <br>";
+	info += port.value +"   <br>";
+	info += userName.value +"   <br>";
+	info += passWord.value +"   <br>";
+//	info += ftpPath.value +"   <br>";
+	info += localPath.value +"   <br>";
+	info += cameraName.value +"   <br>";
+	info += fileSum.value +"   <br>";
+	info += fileList.value +"   <br>";
+//	alert(info);
+	var isOk = ocxweb.SetFtpInfo(
+				ip.value,
+				port.value,
+				userName.value,
+				passWord.value,
+				"",
+				localPath.value,
+				cameraName.value,
+				fileSum.value,
+				fileList.value
+				);
+	if(isOk)
+		alert("设置成功");
+	else 
+		alert("设置失败");
+}
+function GetInfo()
+{
+	/*
+	IP
+	<F>
+	port
+	<F>
+	username
+	<F>
+	password
+	<F>
+	serverPath
+	<F>
+	localPath
+	<F>
+	cCameraName
+	<F>
+	Max File Num
+	<F>
+		file1.txt<R>file2.txt<R>file3.txt<R>
+	<F>
+	*/
+	var strInfo = ocxweb.GetFtpInfo();
+	if(strInfo=="")
+	{
+		alert("none");
+	}
+	else
+	{
+//		alert(strInfo);	
+		var ip 			= document.getElementById("i_ip");
+		var port 		= document.getElementById("i_port");
+		var userName 	= document.getElementById("i_userName");
+		var passWord 	= document.getElementById("i_passWord");
+	//	var ftpPath 	= document.getElementById("i_ftpPath");
+		var localPath 	= document.getElementById("i_localPath");
+		var cameraName 	= document.getElementById("i_cameraName");
+		var fileSum 	= document.getElementById("i_fileSum");
+		var fileList 	= document.getElementById("i_fileList");
+		var infos		= strInfo.split("<F>");
+		ip.value 		= infos[0];
+		port.value 		= infos[1];
+		userName.value 	= infos[2];
+		passWord.value 	= infos[3];
+	//	ftpPath.value 	= infos[4];
+		localPath.value = infos[5];
+		cameraName.value = infos[6];
+		fileSum.value 	= infos[7];
+		fileList.value 	= infos[8];
+		
+	}
+}
+function SetFtp()
+{
+	ocxweb.SetConfigDlg(1);
+}
+function DownLoadInfo()
+{
+	ocxweb.DownLoadConfig();
+	ocxweb.KLoadImage(ocxweb.GetPicPath());
+}
+function UpLoadInfo()
+{
+	ocxweb.UpLoadConfig();
+}
+
+function SetLan()
+{
+	ocxweb.SetLaneConfigDlg(1);
+}
+function SetOperate()
+{
+	ocxweb.SetDoConfigDlg();
+}
+function SetTimes()
+{
+	ocxweb.SetTimeConfigdlg();
+}
+
+
+function showOcx(isShow)
+{
+	if(isShow==1)
+	{
+		ocxweb.ShowWindow(true);
+		document.getElementById("ocxweb").width=ocxweb.GetWidth();
+		document.getElementById("ocxweb").height=ocxweb.GetHeight();
+	}
+	else 
+	{	
+		ocxweb.ShowWindow(false);
+		document.getElementById("ocxweb").width=1;
+		document.getElementById("ocxweb").height=1;
+	}
+}
+
+</script>
+<script for="ocxweb"  event="PostEd()">
+	
+	//window.document.write("The parameter you entered is:<br> " + ocxweb.outputStr + "  ");
+</script>
+
+
+<!--
+打开浏览器-工具 - internet选项-内容- 证书-把【中级证书颁发机构】里的该（）证书导出来-
+再把导出来的证书导入【受信任的根证书颁发机构】 
+就OK了
+-->
+</BODY>
+</HTML>

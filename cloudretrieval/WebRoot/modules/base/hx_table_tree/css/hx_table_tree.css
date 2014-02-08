@@ -1,0 +1,38 @@
+#table_tree_header{
+	width:100%;
+	border-collapse: collapse;
+}
+
+#table_tree_header th{
+background-color:#DBEAF5;
+font-size:13pt;
+font-weight:bold;
+text-align:center;
+border:1 solid #C0C0C0;
+height:32px;
+}
+#node_root{
+	
+	width:100%;
+	border-collapse:collapse;
+}
+#node_root td {
+font-size:10pt;
+border-left:1 solid #C0C0C0;
+border-right:1 solid #C0C0C0;
+border-bottom:1 solid #C0C0C0;
+height:26px;
+}
+
+.table_tree_node{
+	width:100%;
+
+	border-collapse:collapse;
+}
+.table_tree_node td{
+font-size:10pt;
+border-left:1 solid #C0C0C0;
+border-right:1 solid #C0C0C0;
+border-bottom:1 solid #C0C0C0;
+height:26px;
+}

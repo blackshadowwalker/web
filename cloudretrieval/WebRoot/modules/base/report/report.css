@@ -1,0 +1,93 @@
+.tablestyle{
+    border-top: 2px solid #000000; 
+    border-right: 2px solid #000000; 
+    border-bottom: 1px solid #000000; 
+    border-left: 1px solid #000000; 
+}
+
+.TrColor
+{
+
+    background-color:#F5F3EB;
+
+}
+
+.TdTitle
+{
+
+    border-bottom:1px solid #000000;
+    border-left:1px solid #000000;
+    padding:0px;
+    margin:0px;
+    font-size:15px;
+    text-align:center;
+    font-weight: bold;
+
+}
+
+.TD
+{
+	height: 22px;
+    border-bottom:1px solid #000000;
+    border-left:1px solid #000000;
+    padding:0px;
+    margin:0px;
+    font-size:13px;
+    word-break:break-all;
+
+}
+
+
+.TdRight
+{
+	height: 22px;
+    border-bottom:1px solid #000000;
+    border-left:1px solid #000000;
+    padding:0px;
+    margin:0px;
+    text-align:right;
+    font-size:13px;
+    word-break:break-all;
+
+}
+
+.BB_button{
+	
+	background-repeat:no-repeat;
+	border:0;
+	padding-left:8px;
+	padding-right:10px;
+	margin-left:6px;
+	background-color:#FFFFFF;
+}
+/*
+	上一页
+*/
+.last_page{
+	background-image:url(image/last.gif);
+}
+.last_page_grey{
+	background-image:url(image/last_grey.gif);
+}
+/*
+	下一页
+*/
+.next_page{
+	background-image:url(image/next.gif);
+}
+
+.next_page_grey{
+	background-image:url(image/next_grey.gif);
+}
+
+.excel{
+	background-image:url(image/excel.gif);
+}
+
+.excel_grey{
+	background-image:url(image/excel_grey.gif);
+}
+
+.doc{
+	background-image:url(image/doc.gif);
+}

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UserEndpointService" targetNamespace="http://www.medianate.com/api/users" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.medianate.com/api/users" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.medianate.com/api/users" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.medianate.com/api/users">
+  <xs:element name="OrganizationDetail" type="tns:organizationDetail"/>
+  <xs:element name="createUser" type="tns:createUser"/>
+  <xs:element name="createUserResponse" type="tns:createUserResponse"/>
+  <xs:element name="deleteUser" type="tns:deleteUser"/>
+  <xs:element name="deleteUserResponse" type="tns:deleteUserResponse"/>
+  <xs:element name="findAllUsers" type="tns:findAllUsers"/>
+  <xs:element name="findAllUsersResponse" type="tns:findAllUsersResponse"/>
+  <xs:element name="getUserDetail" type="tns:getUserDetail"/>
+  <xs:element name="getUserDetailResponse" type="tns:getUserDetailResponse"/>
+  <xs:element name="register" type="tns:register"/>
+  <xs:element name="registerResponse" type="tns:registerResponse"/>
+  <xs:element name="updateUser" type="tns:updateUser"/>
+  <xs:element name="updateUserResponse" type="tns:updateUserResponse"/>
+  <xs:element name="userDetail" type="tns:userDetail"/>
+  <xs:complexType name="createUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="newUserDetail" type="tns:userDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="emailAddress" type="xs:string"/>
+      <xs:element name="enabled" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="locale" type="xs:string"/>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element name="mailingEnabledCancel" type="xs:boolean"/>
+      <xs:element name="mailingEnabledFailure" type="xs:boolean"/>
+      <xs:element name="mailingEnabledSuccess" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="organization" type="tns:organizationDetail"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element name="roleAdmin" type="xs:boolean"/>
+      <xs:element name="roleFullIO" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="organizationDetail">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:userDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="newUserDetail" type="tns:userDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:userDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserDetailResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:userDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAllUsers">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="findAllUsersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="register">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="emailAddress" type="xs:string"/>
+      <xs:element name="mailingEnabledSuccess" type="xs:boolean"/>
+      <xs:element name="mailingEnabledFailure" type="xs:boolean"/>
+      <xs:element name="mailingEnabledCancel" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="locale" type="xs:string"/>
+      <xs:element minOccurs="0" name="newOrganisationName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="deleteUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteUserResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="UserNotFoundException" type="tns:UserNotFoundException"/>
+  <xs:complexType name="UserNotFoundException">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="OperationNotAllowedException" type="tns:OperationNotAllowedException"/>
+  <xs:complexType name="OperationNotAllowedException">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="UserAlreadyExistsException" type="tns:UserAlreadyExistsException"/>
+  <xs:complexType name="UserAlreadyExistsException">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createUserResponse">
+    <wsdl:part name="parameters" element="tns:createUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllUsersResponse">
+    <wsdl:part name="parameters" element="tns:findAllUsersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserDetail">
+    <wsdl:part name="parameters" element="tns:getUserDetail">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserNotFoundException">
+    <wsdl:part name="UserNotFoundException" element="tns:UserNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUser">
+    <wsdl:part name="parameters" element="tns:deleteUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="OperationNotAllowedException">
+    <wsdl:part name="OperationNotAllowedException" element="tns:OperationNotAllowedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserDetailResponse">
+    <wsdl:part name="parameters" element="tns:getUserDetailResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUser">
+    <wsdl:part name="parameters" element="tns:updateUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllUsers">
+    <wsdl:part name="parameters" element="tns:findAllUsers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerResponse">
+    <wsdl:part name="parameters" element="tns:registerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUser">
+    <wsdl:part name="parameters" element="tns:createUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserResponse">
+    <wsdl:part name="parameters" element="tns:deleteUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserAlreadyExistsException">
+    <wsdl:part name="UserAlreadyExistsException" element="tns:UserAlreadyExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUserResponse">
+    <wsdl:part name="parameters" element="tns:updateUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="register">
+    <wsdl:part name="parameters" element="tns:register">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserEndpoint">
+    <wsdl:operation name="createUser">
+      <wsdl:input name="createUser" message="tns:createUser">
+    </wsdl:input>
+      <wsdl:output name="createUserResponse" message="tns:createUserResponse">
+    </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException" message="tns:UserAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException" message="tns:UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="OperationNotAllowedException" message="tns:OperationNotAllowedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <wsdl:input name="updateUser" message="tns:updateUser">
+    </wsdl:input>
+      <wsdl:output name="updateUserResponse" message="tns:updateUserResponse">
+    </wsdl:output>
+      <wsdl:fault name="UserNotFoundException" message="tns:UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="OperationNotAllowedException" message="tns:OperationNotAllowedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserDetail">
+      <wsdl:input name="getUserDetail" message="tns:getUserDetail">
+    </wsdl:input>
+      <wsdl:output name="getUserDetailResponse" message="tns:getUserDetailResponse">
+    </wsdl:output>
+      <wsdl:fault name="UserNotFoundException" message="tns:UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="OperationNotAllowedException" message="tns:OperationNotAllowedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllUsers">
+      <wsdl:input name="findAllUsers" message="tns:findAllUsers">
+    </wsdl:input>
+      <wsdl:output name="findAllUsersResponse" message="tns:findAllUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="register">
+      <wsdl:input name="register" message="tns:register">
+    </wsdl:input>
+      <wsdl:output name="registerResponse" message="tns:registerResponse">
+    </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException" message="tns:UserAlreadyExistsException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input name="deleteUser" message="tns:deleteUser">
+    </wsdl:input>
+      <wsdl:output name="deleteUserResponse" message="tns:deleteUserResponse">
+    </wsdl:output>
+      <wsdl:fault name="UserNotFoundException" message="tns:UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserEndpointServiceSoapBinding" type="tns:UserEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException">
+        <soap:fault name="UserAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationNotAllowedException">
+        <soap:fault name="OperationNotAllowedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationNotAllowedException">
+        <soap:fault name="OperationNotAllowedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserDetail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserDetail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserDetailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OperationNotAllowedException">
+        <soap:fault name="OperationNotAllowedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findAllUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findAllUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="register">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="register">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="registerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException">
+        <soap:fault name="UserAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserEndpointService">
+    <wsdl:port name="UserEndpointImplPort" binding="tns:UserEndpointServiceSoapBinding">
+      <soap:address location="to_be_overridden_Add_?wsdl_to_the_endpoint_url_to_get_a_WSDL_with_actual_endpoint"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

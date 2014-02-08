@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dwr>
+  <allow>
+  	
+  	<convert match="modules.base.CustomException" converter="bean"/>  
+ 	<convert match="java.lang.Exception" converter="exception"/>  
+	<!--下面一定要配置，不然会报如下错误:org.directwebremoting.util.CommonsLoggingOutput error 严重: No converter found for 'java.lang.StackTraceElement' -->  
+    <convert match="java.lang.StackTraceElement" converter="bean"></convert>  
+   
+  	
+  	
+    <create creator="new" javascript="codeBean">
+      <param name="class" value="modules.code.codeBean"/>
+      <include method="queryTSCode"/>
+      <include method="beforeUpdateTSCode"/>
+      <include method="updateTSCode"/>
+      <include method="deleteTSCode"/>
+      <include method="detailTSCode"/>
+      <include method="addTSCode"/>
+    </create>
+    
+    <create creator="new" javascript="padBean">
+      <param name="class" value="modules.pad.padBean"/>
+      <include method="getJKZB"/>
+      <include method="getJKZB_mon"/>
+      <include method="getTopDept"/>
+      <include method="isYYJG"/>
+      <include method="getxtxx"/>
+      <include method="getqxj"/>
+      <include method="getpadxx"/>
+      <include method="getrylb"/>
+      <include method="getrwxx"/>
+      <include method="getryzx"/>
+      <include method="getxtxx2"/>
+      <include method="forqs"/>
+      <include method="forcsxj"/>
+      <include method="getzhzx"/>
+    </create>
+    
+    <create creator="new" javascript="navBean">
+      <param name="class" value="modules.nav.navBean"/>
+      <include method="getMenu"/>
+    </create>
+    <create creator="new" javascript="logonBean">
+      <param name="class" value="modules.logon.logonBean"/>
+      <!-- <include method="validUser"/> -->
+      <include method="checkRole"/>
+      <include method="setLanguage"/>
+      <include method="getRJTime"/>
+    </create>
+  
+    <create creator="new" javascript="baseBean">
+      <param name="class" value="modules.base.baseBean"/>
+      <include method="checkDept"/>
+      <include method="getGY"/>
+      <include method="getRW"/>
+      <include method="sureDept"/>
+      <include method="getGY2"/>
+      <include method="getName"/>
+      <include method="getGwname"/>
+      <include method="digest"/>
+      <include method="validNKTime"/>
+      <include method="xtTime"/>
+      <include method="queryDeptLevel"/>
+      <include method="getperson"/>
+      <include method="getpz"/>
+      <include method="pd_only"/>
+      <include method="check_stu_code"/>
+    </create>
+    
+    
+    <create creator="none" javascript="DeptTree">
+      <param name="class" value="modules.base.DeptTree"/>
+      <include method="queryTree"/>
+      <include method="queryDeptCode"/>
+    </create>
+    
+    <create creator="none" javascript="LocationTree">
+      <param name="class" value="modules.base.LocationTree"/>
+      <include method="queryTree"/>
+      <include method="queryLocationCode"/>
+    </create>
+    
+      <create creator="new" javascript="mmxgBean"> 
+      <param name="class" value="modules.jcxx.mmxg.mmxgBean"/>  
+      <include method="updatePassword"/>  
+      <include method="bforup"/>
+      <include method="forup"/>
+    </create>
+    
+    
+    <create creator="none" javascript="UserTree">
+      <param name="class" value="modules.base.UserTree"/>
+      <include method="queryTree"/>
+      <include method="queryUserCard"/>
+    </create>
+    
+    
+    <create creator="none" javascript="TimeBean">
+      <param name="class" value="modules.base.TimeBean"/>
+      <include method="segDate"/>
+    </create>
+    
+    
+    <create creator="new" javascript="dbsxBean">
+      <param name="class" value="modules.dbsx.dbsxBean"/>
+      <include method="queryTDCzkzDbsx"/>
+      <include method="beforeUpdateTDCzkzDbsx"/>
+      <include method="updateTDCzkzDbsx"/>
+      <include method="deleteTDCzkzDbsx"/>
+      <include method="detailTDCzkzDbsx"/>
+      <include method="addTDCzkzDbsx"/>
+      <include method="queryLink"/>
+       <include method="getInfo"/>
+    </create>
+    
+    
+    <create creator="new" javascript="rulerBean"> 
+      <param name="class" value="modules.jcxx.ruler.rulerBean"/>  
+      <include method="queryTSRuler"/>  
+      <include method="beforeUpdateTSRuler"/>  
+      <include method="updateTSRuler"/>  
+      <include method="deleteTSRuler"/>  
+      <include method="detailTSRuler"/>  
+      <include method="addTSRuler"/> 
+    </create>
+    
+     <create creator="new" javascript="deptBean"> 
+      <param name="class" value="modules.jcxx.dept.deptBean"/>  
+      <include method="queryTSDept"/>  
+      <include method="beforeUpdateTSDept"/>  
+      <include method="updateTSDept"/>  
+      <include method="deleteTSDept"/>  
+      <include method="detailTSDept"/>  
+      <include method="addTSDept"/> 
+    </create>
+    
+    
+    <create creator="new" javascript="personBean"> 
+      <param name="class" value="modules.jcxx.person.personBean"/>  
+      <include method="queryTUPerson"/>  
+      <include method="beforeUpdateTUPerson"/>  
+      <include method="updateTUPerson"/>  
+      <include method="deleteTUPerson"/>  
+      <include method="detailTUPerson"/>  
+      <include method="addTUPerson"/> 
+      <include method="forseach"/>
+      <include method="detailTUPerson2"/>
+    </create>
+    
+    
+    <create creator="new" javascript="userBean"> 
+      <param name="class" value="modules.jcxx.user.userBean"/>  
+      <include method="queryTSUser"/>  
+      <include method="beforeUpdateTSUser"/>  
+      <include method="updateTSUser"/>  
+      <include method="deleteTSUser"/>  
+      <include method="detailTSUser"/>  
+      <include method="setPassTSUser"/>  
+      <include method="addTSUser"/>  
+      <include method="isExist"/>
+      <include method="getRole"/>
+      <include method="beforeUser"/>
+      <include method="updateUser"/>
+    </create>
+    
+    
+    <create creator="new" javascript="roleBean"> 
+      <param name="class" value="modules.jcxx.role.roleBean"/>  
+      <include method="createRulerTree"/>  
+      <include method="queryRulerTree"/>  
+      <include method="deleteTSRole"/>  
+      <include method="addTSRole"/>  
+      <include method="updateTSRole"/>  
+      <include method="queryTSRole"/> 
+    </create>
+    
+    <create creator="new" javascript="cwfhBean">
+      <param name="class" value="modules.bmzx.cwfh.cwfhBean"/>
+      <include method="queryStuSalary"/>  
+      <include method="beforeUpdateStuSalary"/>  
+      <include method="updateStuSalary"/>  
+      <include method="deleteStuSalary"/>  
+      <include method="detailStuSalary"/>  
+      <include method="addSHStuSalary"/>
+      <include method="forPlsh"/>
+      <include method="forShxx"/>
+    </create>
+    
+	<create creator="new" javascript="ggfjBean">
+      <param name="class" value="modules.ggfj.ggfjBean"/>
+      <include method="queryTSGgfj"/>  
+      <include method="beforeUpdateTSGgfj"/>  
+      <include method="updateTSGgfj"/>  
+      <include method="deleteTSGgfj"/>  
+      <include method="detailTSGgfj"/>  
+      <include method="addTSGgfj"/>
+      <include method="forPlsh"/>
+      <include method="forShxx"/>
+    </create>
+    
+    <create creator="new" javascript="baseInfoBean">
+      <param name="class" value="modules.baseInfo.baseInfoBean"/>
+      <include method="queryBaseInfo"/>
+      <include method="deleteBaseInfo"/>
+      <include method="addBaseInfo"/>
+      <include method="queryBaseInfoById"/>
+      <include method="updateBaseInfoById"/>
+      <include method="updateBaseInfoWork"/>
+    </create>
+    
+    <create creator="new" javascript="locationBean">
+      <param name="class" value="modules.location.locationBean"/>
+      <include method="deleteTSLocation"/>
+      <include method="addTSLocation"/>
+      <include method="updateTSLocation"/>
+      <include method="queryTSLocation"/>
+      <include method="beforeUpdateTSLocation"/>
+      <include method="detailTSLocation"/>
+      <include method="getRandId"/>
+      <include method="getLocationID"/>
+    </create>
+
+    <create creator="new" javascript="cloudBean"  > 
+      <param name="class" value="modules.cloud.cloudBean"/>   
+      <include method="startTask"/>
+      <include method="startTaskEx"/>
+      <include method="getPercent"/>  
+      <include method="getFinished"/> 
+      <include method="getReport"/> 
+      <include method="getState"/> 
+      <include method="setAuth"/> 
+      <include method="setSources"/> 
+    </create>
+    
+
+    <create creator="new" javascript="dataMgrBean"> 
+      <param name="class" value="modules.xtgl.dataMgr.dataMgrBean"/>
+      <include method="queryTSDataMgr"/>
+      <include method="queryTSFileName"/>
+      <include method="addTSBackDataMgr"/>
+      <include method="addTSRestoreDataMgr"/>
+      <include method="downloadFile"/>
+    </create>
+    
+    <create creator="new" javascript="userlogBean"> 
+      <param name="class" value="modules.rzgl.userlog.userlogBean"/> 
+      <include method="queryTSUserlog"/>
+      <include method="detailTSUserlog"/>
+    </create>
+    
+    <create creator="new" javascript="errorlogBean"> 
+      <param name="class" value="modules.rzgl.errorlog.errorlogBean"/> 
+      <include method="queryTSErrorlog"/>
+      <include method="detailTSErrorlog"/>
+    </create>
+    
+    <create creator="new" javascript="statisticBean">
+      <param name="class" value="modules.cloud.statistic.statisticBean"/>
+      <include method="queryStatistic"/>
+      <include method="deleteStatistic"/>
+      <include method="statisticDetail"/>
+      <include method="chartReport"/>
+    </create>
+       
+    <create creator="new" javascript="taskMgrBean">
+      <param name="class" value="modules.cloud.taskMgr.taskMgrBean"/>
+      <include method="queryTask"/>
+      <include method="stopTask"/>
+      <include method="beforeUpdateTask"/>
+      <include method="taskReport"/>
+      <include method="updateTSTask"/>
+      <include method="detailTask"/>
+    </create>
+  
+    <create creator="new" javascript="watchedFolderBean">
+      <param name="class" value="modules.cloud.watchedFolder.WatchedFolder"/>
+      <include method="addFolder"/>
+      <include method="queryWatchedFolder"/>
+      <include method="watchedFolderDetail"/>
+      <include method="uploadFile"/>
+      <include method="uploadFiles"/>
+      <include method="setMinTime"/>
+      <include method="setMaxTime"/>
+    </create>
+	
+	<create creator="new" javascript="fileMgrBean">
+      <param name="class" value="modules.cloud.fileMgr.fileMgrBean"/>
+	  <include method="queryFile"/>
+	  <include method="beforeUpdateFile"/>
+	  <include method="UpdateFile"/>
+      <include method="uploadFile"/>
+      <include method="uploadFiles"/>
+      <include method="downLoadFile"/>
+      <include method="processFile"/>
+	  <include method="deleteFile"/>
+	  <include method="getCase"/>
+	  <include method="addCaseDistribution"/>
+	  <include method="getUrl"/>
+	  <include method="getFilePath"/>
+    </create>
+    
+    <create creator="new" javascript="realAnalyBean">
+      <param name="class" value="modules.cloud.realAnaly.realAnalyBean"/>
+	  <include method="queryReport"/>
+      <include method="startProcessW"/>
+      <include method="processFile"/>
+      <include method="getCurPercent"/>
+    </create>
+ 
+	 <create creator="new" javascript="baseInformationBean">
+	      <param name="class" value="modules.cloud.baseInformation.baseInformationBean"/>
+	      <include method="queryTSBaseInfo"/>
+	      <include method="updateTSBaseInfo"/>
+	      <include method="deleteTSBaseInfo"/>
+	      <include method="beforeUpdateTSBaseInfo"/>
+	      <include method="addTSBaseInfo"/>
+	      <include method="detailTSBaseInfo"/>
+	 </create>
+	 
+ 	<create creator="new" javascript="cloudVehicleTrackBean"> 
+      <param name="class" value="modules.cloud.vehicleTrack.vehicleTrackBean"/>   
+      <include method="getCarTrack"/>
+    </create>
+    
+
+    <create creator="new" javascript="casemanageBean"> 
+      <param name="class" value="modules.ajgl.ajxxgl.casemanage.casemanageBean"/>   
+      <include method="queryCase"/>
+      <include method="detailCase"/>
+      <include method="beforUpdateCase"/>
+      <include method="updateCase"/>
+      <include method="insertCase"/>
+      <include method="getRandId"/>
+      <include method="deleteCase"/>
+      <include method="getVideos"/>
+      <include method="videoDetail"/>
+      <include method="addVideoComment"/>
+      <include method="videoSession"/>
+      <include method="updateVideoComment"/>
+      <include method="deleteVideoComment"/>
+    </create>
+    
+    <create creator="new" javascript="casetypeBean"> 
+      <param name="class" value="modules.ajgl.ajxxgl.casetype.casetypeBean"/>   
+      <include method="queryCasetype"/>
+      <include method="beforUpdateCasetype"/>
+      <include method="updateCasetype"/>
+      <include method="insertCasetype"/>
+      <include method="deleteCasetype"/>
+    </create>
+    
+
+    <create creator="new" javascript="clglBean">
+	      <param name="class" value="modules.ajgl.ajxxgl.clgl.clglBean"/>
+	      <include method="queryTSClgl"/>
+	      <include method="updateTSClgl"/>
+	      <include method="deleteTSClgl"/>
+	      <include method="beforeUpdateTSClgl"/>
+	      <include method="detailTSClgl"/>
+	      <include method="ImageEnhancement"/>
+	      <include method="downloadImageToLocal"/>
+	      <include method="updateImageUrl"/>
+	 </create>
+	 
+	  <create creator="new" javascript="imageProcessBean"> 
+      <param name="class" value="modules.image.imageProcessBean"/>   
+      <include method="FogRemove"/>
+      <include method="LowLight"/>
+    </create>
+    
+
+  </allow>
+</dwr>

@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ProfileEndpointService" targetNamespace="http://www.medianate.com/api/profiles" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.medianate.com/api/profiles" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.resonate-mp4.com/medianate_edl" targetNamespace="http://www.resonate-mp4.com/medianate_edl" version="1.0">
+<xs:element name="edl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="sources">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="source" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="metadata" type="tns:sourceMetadataType"/>
+                  </xs:sequence>
+                  <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                  <xs:attribute name="localDownloadDirectory" type="xs:string"/>
+                  <xs:attribute name="internalLocalPath" type="xs:string"/>
+                  <xs:attribute name="beginTimecode" type="xs:string"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="destination">
+          <xs:complexType>
+            <xs:sequence/>
+            <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+            <xs:attribute name="internalLocalPath" type="xs:string"/>
+            <xs:attribute name="fileformat" type="tns:fileformatEnum"/>
+            <xs:attribute name="muxerOptionalArgs" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element default="false" minOccurs="0" name="hint" type="xs:boolean"/>
+        <xs:element default="false" minOccurs="0" name="httpdownloadable" type="xs:boolean"/>
+        <xs:element minOccurs="0" name="assetinformation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:assetInformationItemType"/>
+            </xs:sequence>
+            <xs:attribute name="behavior" type="tns:behaviorEnum" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="alternateinformation" type="tns:alternateInformationType"/>
+        <xs:element minOccurs="0" name="cut" type="tns:cutType"/>
+        <xs:element minOccurs="0" name="filters">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="excludebitraterange" nillable="true" type="tns:bitrateRangeExclusionType"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="excludelang" nillable="true" type="tns:langExclusionType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="analyze">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="videotracks" type="tns:videoAnalyzeType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="process" nillable="true">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="videotracks" type="tns:videoProcessType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="transcode">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="videotracks" type="tns:videoTranscodeType"/>
+              <xs:element name="audiotracks" type="tns:audioTranscodeType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="streaming">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="manifests" type="tns:manifestsType"/>
+            </xs:sequence>
+            <xs:attribute name="preferredSegmentDuration" type="xs:long" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="drm">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="videotracks" type="tns:drmInfoType"/>
+              <xs:element minOccurs="0" name="audiotracks" type="tns:drmInfoType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="userdata" nillable="true" type="tns:userdataType"/>
+      </xs:sequence>
+      <xs:attribute name="usecase" type="tns:useCaseEnum" use="required"/>
+    </xs:complexType>
+  </xs:element>
+<xs:complexType name="sourceMetadataType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="takenDateTime" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="takenPostion" type="tns:geographicPositionType"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="geographicPositionType">
+    <xs:sequence/>
+    <xs:attribute name="latitude" type="xs:double" use="required"/>
+    <xs:attribute name="longitude" type="xs:double" use="required"/>
+  </xs:complexType>
+<xs:complexType name="assetInformationItemType">
+    <xs:sequence/>
+    <xs:attribute name="category" type="tns:metadataCategoryEnum" use="required"/>
+    <xs:attribute name="lang" type="tns:langEnum"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+<xs:complexType name="alternateInformationType">
+    <xs:sequence/>
+    <xs:attribute name="videoswitchablebybandwidth" type="xs:boolean" use="required"/>
+    <xs:attribute name="audioswitchablebylang" type="xs:boolean" use="required"/>
+  </xs:complexType>
+<xs:complexType name="cutType">
+    <xs:sequence/>
+    <xs:attribute name="begints" type="xs:long"/>
+    <xs:attribute name="endts" type="xs:long"/>
+  </xs:complexType>
+<xs:complexType name="bitrateRangeExclusionType">
+    <xs:sequence/>
+    <xs:attribute name="mediatype" type="tns:mediaTypeEnum" use="required"/>
+    <xs:attribute name="min" type="xs:int"/>
+    <xs:attribute name="max" type="xs:int"/>
+  </xs:complexType>
+<xs:complexType name="langExclusionType">
+    <xs:sequence/>
+    <xs:attribute name="lang" type="tns:langEnum" use="required"/>
+  </xs:complexType>
+<xs:complexType name="videoAnalyzeType">
+    <xs:sequence/>
+    <xs:attribute name="pluginLibraryUri" type="xs:string" use="required"/>
+    <xs:attribute name="pluginLibraryInternalPath" type="xs:string"/>
+  </xs:complexType>
+<xs:complexType name="videoProcessType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="incrustation" type="tns:incrustationType"/>
+      <xs:element minOccurs="0" name="frameProcessing" type="tns:frameProcessingType"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="incrustationType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="textIncrustation" type="tns:textIncrustationType"/>
+      <xs:element minOccurs="0" name="pictureIncrustation" type="tns:pictureIncrustationType"/>
+    </xs:sequence>
+    <xs:attribute name="opacity" type="xs:float"/>
+    <xs:attribute name="posx" type="xs:float"/>
+    <xs:attribute name="posy" type="xs:float"/>
+    <xs:attribute name="halign" type="tns:horizontalAlignmentEnum"/>
+    <xs:attribute name="valign" type="tns:verticalAlignmentEnum"/>
+  </xs:complexType>
+<xs:complexType name="textIncrustationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="fontFamily" type="xs:string"/>
+        <xs:attribute name="fontSize" type="xs:float"/>
+        <xs:attribute name="fontBold" type="xs:boolean"/>
+        <xs:attribute name="fontShadow" type="xs:boolean"/>
+        <xs:attribute name="fontColor" type="xs:string"/>
+        <xs:attribute name="fontShadowColor" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+<xs:complexType name="pictureIncrustationType">
+    <xs:sequence/>
+    <xs:attribute name="pictureUri" type="xs:string"/>
+    <xs:attribute name="pictureInternalLocalPath" type="xs:string"/>
+    <xs:attribute name="width" type="xs:float"/>
+    <xs:attribute name="height" type="xs:float"/>
+  </xs:complexType>
+<xs:complexType name="frameProcessingType">
+    <xs:sequence/>
+    <xs:attribute name="convertToGrayscale" type="xs:boolean"/>
+  </xs:complexType>
+<xs:complexType name="videoTranscodeType">
+    <xs:sequence/>
+    <xs:attribute name="forcecopy" type="xs:boolean"/>
+    <xs:attribute name="codec" type="tns:videoCodecEnum"/>
+    <xs:attribute name="avgbitrate" type="xs:long"/>
+    <xs:attribute name="maxbitrate" type="xs:long"/>
+    <xs:attribute name="framerate" type="xs:float"/>
+    <xs:attribute name="framewidth" type="xs:int"/>
+    <xs:attribute name="frameheight" type="xs:int"/>
+    <xs:attribute name="iframeperiod" type="xs:long"/>
+    <xs:attribute name="optionalArgs" type="xs:string"/>
+  </xs:complexType>
+<xs:complexType name="audioTranscodeType">
+    <xs:sequence/>
+    <xs:attribute name="forcecopy" type="xs:boolean"/>
+    <xs:attribute name="codec" type="tns:audioCodecEnum"/>
+    <xs:attribute name="avgbitrate" type="xs:long"/>
+    <xs:attribute name="maxbitrate" type="xs:long"/>
+    <xs:attribute name="channelcount" type="xs:int"/>
+    <xs:attribute name="samplerate" type="xs:int"/>
+    <xs:attribute name="optionalArgs" type="xs:string"/>
+  </xs:complexType>
+<xs:complexType name="manifestsType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="manifest" nillable="true" type="tns:manifestType"/>
+    </xs:sequence>
+    <xs:attribute name="programId" type="xs:string" use="required"/>
+    <xs:attribute name="resolution" type="xs:string" use="required"/>
+    <xs:attribute name="bandwidth" type="xs:long" use="required"/>
+    <xs:attribute name="codecs" type="xs:string" use="required"/>
+    <xs:attribute name="allowCache" type="xs:boolean"/>
+    <xs:attribute name="maxSegmentDuration" type="xs:long" use="required"/>
+    <xs:attribute name="slidingWindowMaxSegmentCount" type="xs:long" use="required"/>
+    <xs:attribute name="backupEnabled" type="xs:boolean"/>
+  </xs:complexType>
+<xs:complexType name="manifestType">
+    <xs:sequence/>
+    <xs:attribute name="type" type="tns:manifestTypeEnum"/>
+    <xs:attribute name="extension" type="xs:string"/>
+  </xs:complexType>
+<xs:complexType name="drmInfoType">
+    <xs:sequence/>
+    <xs:attribute name="mode" type="tns:drmModeEnum" use="required"/>
+    <xs:attribute name="contentid" type="xs:string"/>
+    <xs:attribute name="cek" type="xs:string"/>
+    <xs:attribute name="riurl" type="xs:string"/>
+    <xs:attribute name="textualheader" type="xs:string"/>
+  </xs:complexType>
+<xs:complexType name="userdataType">
+    <xs:sequence/>
+    <xs:attribute name="key" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+<xs:simpleType name="fileformatEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown/automatic file format"/>
+      <xs:enumeration value="MP4"/>
+      <xs:enumeration value="MOV"/>
+      <xs:enumeration value="MP4-3GP"/>
+      <xs:enumeration value="ASF"/>
+      <xs:enumeration value="AVI"/>
+      <xs:enumeration value="MP3"/>
+      <xs:enumeration value="FLV"/>
+      <xs:enumeration value="OGG"/>
+      <xs:enumeration value="MPEG2TS"/>
+      <xs:enumeration value="MPEG2TS-SEG"/>
+      <xs:enumeration value="PDCF"/>
+      <xs:enumeration value="MPEG1"/>
+      <xs:enumeration value="RealMedia"/>
+      <xs:enumeration value="DigitalVideo"/>
+      <xs:enumeration value="Matroska"/>
+      <xs:enumeration value="WEBM"/>
+      <xs:enumeration value="FLAC"/>
+      <xs:enumeration value="MPC"/>
+      <xs:enumeration value="WAV"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="metadataCategoryEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Title"/>
+      <xs:enumeration value="Author"/>
+      <xs:enumeration value="Album"/>
+      <xs:enumeration value="Copyright"/>
+      <xs:enumeration value="Genre"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="langEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="fre"/>
+      <xs:enumeration value="eng"/>
+      <xs:enumeration value="bul"/>
+      <xs:enumeration value="spa"/>
+      <xs:enumeration value="cze"/>
+      <xs:enumeration value="dan"/>
+      <xs:enumeration value="ger"/>
+      <xs:enumeration value="est"/>
+      <xs:enumeration value="gre"/>
+      <xs:enumeration value="ita"/>
+      <xs:enumeration value="lav"/>
+      <xs:enumeration value="lit"/>
+      <xs:enumeration value="mlt"/>
+      <xs:enumeration value="dut"/>
+      <xs:enumeration value="pol"/>
+      <xs:enumeration value="por"/>
+      <xs:enumeration value="rum"/>
+      <xs:enumeration value="slo"/>
+      <xs:enumeration value="slv"/>
+      <xs:enumeration value="fin"/>
+      <xs:enumeration value="swe"/>
+      <xs:enumeration value="hun"/>
+      <xs:enumeration value="und"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="behaviorEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Keep"/>
+      <xs:enumeration value="Set"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="mediaTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Audio"/>
+      <xs:enumeration value="Video"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="horizontalAlignmentEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left"/>
+      <xs:enumeration value="Center"/>
+      <xs:enumeration value="Right"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="verticalAlignmentEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Top"/>
+      <xs:enumeration value="Center"/>
+      <xs:enumeration value="Bottom"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="videoCodecEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown/automatic video codec"/>
+      <xs:enumeration value="MPEG4 Video Part2"/>
+      <xs:enumeration value="MPEG4 Video AVC"/>
+      <xs:enumeration value="H263 3GP Video"/>
+      <xs:enumeration value="Windows Media Video 7"/>
+      <xs:enumeration value="Windows Media Video 8"/>
+      <xs:enumeration value="Windows Media Video 9"/>
+      <xs:enumeration value="Flash Video 1"/>
+      <xs:enumeration value="VP6"/>
+      <xs:enumeration value="MPEG2 Video"/>
+      <xs:enumeration value="MJPEG"/>
+      <xs:enumeration value="Sorenson Video 3"/>
+      <xs:enumeration value="MPEG1 Video"/>
+      <xs:enumeration value="Real Video 4"/>
+      <xs:enumeration value="DV Video"/>
+      <xs:enumeration value="VP8"/>
+      <xs:enumeration value="MSMPEG4V3"/>
+      <xs:enumeration value="Theora"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="audioCodecEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown/automatic audio codec"/>
+      <xs:enumeration value="MPEG4 Audio AAC"/>
+      <xs:enumeration value="AMR 3GP Audio"/>
+      <xs:enumeration value="Windows Media Audio 1"/>
+      <xs:enumeration value="Windows Media Audio 2"/>
+      <xs:enumeration value="MPEG-1/2 Layer 3"/>
+      <xs:enumeration value="MPEG-1/2 Layer 2"/>
+      <xs:enumeration value="PCM U8"/>
+      <xs:enumeration value="PCM U16BE"/>
+      <xs:enumeration value="PCM U16LE"/>
+      <xs:enumeration value="PCM U24BE"/>
+      <xs:enumeration value="PCM U24LE"/>
+      <xs:enumeration value="PCM U32BE"/>
+      <xs:enumeration value="PCM U32LE"/>
+      <xs:enumeration value="PCM S8"/>
+      <xs:enumeration value="PCM S16BE"/>
+      <xs:enumeration value="PCM S16LE"/>
+      <xs:enumeration value="PCM S24BE"/>
+      <xs:enumeration value="PCM S24LE"/>
+      <xs:enumeration value="PCM S32BE"/>
+      <xs:enumeration value="PCM S32LE"/>
+      <xs:enumeration value="PCM F32BE"/>
+      <xs:enumeration value="PCM F32LE"/>
+      <xs:enumeration value="PCM F64BE"/>
+      <xs:enumeration value="PCM F64LE"/>
+      <xs:enumeration value="QDesign Music 2"/>
+      <xs:enumeration value="Cooker"/>
+      <xs:enumeration value="AC3"/>
+      <xs:enumeration value="ADPCM IMA QT"/>
+      <xs:enumeration value="Vorbis"/>
+      <xs:enumeration value="FLAC"/>
+      <xs:enumeration value="MPC7"/>
+      <xs:enumeration value="MPC8"/>
+      <xs:enumeration value="DTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="manifestTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HLS"/>
+      <xs:enumeration value="Smooth-Streaming"/>
+      <xs:enumeration value="ADS"/>
+      <xs:enumeration value="MPEG-DASH"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="drmModeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Disabled"/>
+      <xs:enumeration value="Manual"/>
+      <xs:enumeration value="Auto"/>
+    </xs:restriction>
+  </xs:simpleType>
+<xs:simpleType name="useCaseEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="Copy"/>
+      <xs:enumeration value="Concat"/>
+      <xs:enumeration value="Split"/>
+      <xs:enumeration value="Merge"/>
+      <xs:enumeration value="Combine"/>
+      <xs:enumeration value="CopyAllInOneOffline"/>
+      <xs:enumeration value="CopyAllInOneOnTheFly"/>
+      <xs:enumeration value="CopyAllInOneHttpStreaming"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.resonate-mp4.com/medianate_edl" xmlns:tns="http://www.medianate.com/api/profiles" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.medianate.com/api/profiles">
+  <xs:import namespace="http://www.resonate-mp4.com/medianate_edl"/>
+  <xs:element name="OrganizationDetail" type="tns:organizationDetail"/>
+  <xs:element name="ProfileDetail" type="tns:profileDetail"/>
+  <xs:element name="create" type="tns:create"/>
+  <xs:element name="createResponse" type="tns:createResponse"/>
+  <xs:element name="delete" type="tns:delete"/>
+  <xs:element name="deleteResponse" type="tns:deleteResponse"/>
+  <xs:element name="detail" type="tns:detail"/>
+  <xs:element name="detailResponse" type="tns:detailResponse"/>
+  <xs:element name="list" type="tns:list"/>
+  <xs:element name="listResponse" type="tns:listResponse"/>
+  <xs:element name="update" type="tns:update"/>
+  <xs:element name="updateDescription" type="tns:updateDescription"/>
+  <xs:element name="updateDescriptionResponse" type="tns:updateDescriptionResponse"/>
+  <xs:element name="updateEdl" type="tns:updateEdl"/>
+  <xs:element name="updateEdlResponse" type="tns:updateEdlResponse"/>
+  <xs:element name="updateResponse" type="tns:updateResponse"/>
+  <xs:element name="updateTitle" type="tns:updateTitle"/>
+  <xs:element name="updateTitleResponse" type="tns:updateTitleResponse"/>
+  <xs:complexType name="updateTitle">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateTitleResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="updateEdl">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="edl">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sources">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="source" nillable="true">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element minOccurs="0" name="metadata" type="ns1:sourceMetadataType"/>
+                      </xs:sequence>
+                      <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                      <xs:attribute name="localDownloadDirectory" type="xs:string"/>
+                      <xs:attribute name="internalLocalPath" type="xs:string"/>
+                      <xs:attribute name="beginTimecode" type="xs:string"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="destination">
+              <xs:complexType>
+                <xs:sequence/>
+                <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                <xs:attribute name="internalLocalPath" type="xs:string"/>
+                <xs:attribute name="fileformat" type="ns1:fileformatEnum"/>
+                <xs:attribute name="muxerOptionalArgs" type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element default="false" minOccurs="0" name="hint" type="xs:boolean"/>
+            <xs:element default="false" minOccurs="0" name="httpdownloadable" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="assetinformation">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="ns1:assetInformationItemType"/>
+                </xs:sequence>
+                <xs:attribute name="behavior" type="ns1:behaviorEnum" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="alternateinformation" type="ns1:alternateInformationType"/>
+            <xs:element minOccurs="0" name="cut" type="ns1:cutType"/>
+            <xs:element minOccurs="0" name="filters">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludebitraterange" nillable="true" type="ns1:bitrateRangeExclusionType"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludelang" nillable="true" type="ns1:langExclusionType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="analyze">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoAnalyzeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="process" nillable="true">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoProcessType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="transcode">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoTranscodeType"/>
+                  <xs:element name="audiotracks" type="ns1:audioTranscodeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="streaming">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="manifests" type="ns1:manifestsType"/>
+                </xs:sequence>
+                <xs:attribute name="preferredSegmentDuration" type="xs:long" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="drm">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="videotracks" type="ns1:drmInfoType"/>
+                  <xs:element minOccurs="0" name="audiotracks" type="ns1:drmInfoType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="userdata" nillable="true" type="ns1:userdataType"/>
+          </xs:sequence>
+          <xs:attribute name="usecase" type="ns1:useCaseEnum" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateEdlResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="list">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="listResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:profileDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="profileDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="edl">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sources">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="source" nillable="true">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element minOccurs="0" name="metadata" type="ns1:sourceMetadataType"/>
+                      </xs:sequence>
+                      <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                      <xs:attribute name="localDownloadDirectory" type="xs:string"/>
+                      <xs:attribute name="internalLocalPath" type="xs:string"/>
+                      <xs:attribute name="beginTimecode" type="xs:string"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="destination">
+              <xs:complexType>
+                <xs:sequence/>
+                <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                <xs:attribute name="internalLocalPath" type="xs:string"/>
+                <xs:attribute name="fileformat" type="ns1:fileformatEnum"/>
+                <xs:attribute name="muxerOptionalArgs" type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element default="false" minOccurs="0" name="hint" type="xs:boolean"/>
+            <xs:element default="false" minOccurs="0" name="httpdownloadable" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="assetinformation">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="ns1:assetInformationItemType"/>
+                </xs:sequence>
+                <xs:attribute name="behavior" type="ns1:behaviorEnum" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="alternateinformation" type="ns1:alternateInformationType"/>
+            <xs:element minOccurs="0" name="cut" type="ns1:cutType"/>
+            <xs:element minOccurs="0" name="filters">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludebitraterange" nillable="true" type="ns1:bitrateRangeExclusionType"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludelang" nillable="true" type="ns1:langExclusionType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="analyze">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoAnalyzeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="process" nillable="true">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoProcessType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="transcode">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoTranscodeType"/>
+                  <xs:element name="audiotracks" type="ns1:audioTranscodeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="streaming">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="manifests" type="ns1:manifestsType"/>
+                </xs:sequence>
+                <xs:attribute name="preferredSegmentDuration" type="xs:long" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="drm">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="videotracks" type="ns1:drmInfoType"/>
+                  <xs:element minOccurs="0" name="audiotracks" type="ns1:drmInfoType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="userdata" nillable="true" type="ns1:userdataType"/>
+          </xs:sequence>
+          <xs:attribute name="usecase" type="ns1:useCaseEnum" use="required"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="lastUpdate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="organization" type="tns:organizationDetail"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="placeHolders" nillable="true" type="xs:string"/>
+      <xs:element name="publicProfile" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="organizationDetail">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="create">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element name="makePublic" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="edl">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sources">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="source" nillable="true">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element minOccurs="0" name="metadata" type="ns1:sourceMetadataType"/>
+                      </xs:sequence>
+                      <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                      <xs:attribute name="localDownloadDirectory" type="xs:string"/>
+                      <xs:attribute name="internalLocalPath" type="xs:string"/>
+                      <xs:attribute name="beginTimecode" type="xs:string"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="destination">
+              <xs:complexType>
+                <xs:sequence/>
+                <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                <xs:attribute name="internalLocalPath" type="xs:string"/>
+                <xs:attribute name="fileformat" type="ns1:fileformatEnum"/>
+                <xs:attribute name="muxerOptionalArgs" type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element default="false" minOccurs="0" name="hint" type="xs:boolean"/>
+            <xs:element default="false" minOccurs="0" name="httpdownloadable" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="assetinformation">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="ns1:assetInformationItemType"/>
+                </xs:sequence>
+                <xs:attribute name="behavior" type="ns1:behaviorEnum" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="alternateinformation" type="ns1:alternateInformationType"/>
+            <xs:element minOccurs="0" name="cut" type="ns1:cutType"/>
+            <xs:element minOccurs="0" name="filters">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludebitraterange" nillable="true" type="ns1:bitrateRangeExclusionType"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludelang" nillable="true" type="ns1:langExclusionType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="analyze">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoAnalyzeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="process" nillable="true">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoProcessType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="transcode">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoTranscodeType"/>
+                  <xs:element name="audiotracks" type="ns1:audioTranscodeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="streaming">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="manifests" type="ns1:manifestsType"/>
+                </xs:sequence>
+                <xs:attribute name="preferredSegmentDuration" type="xs:long" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="drm">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="videotracks" type="ns1:drmInfoType"/>
+                  <xs:element minOccurs="0" name="audiotracks" type="ns1:drmInfoType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="userdata" nillable="true" type="ns1:userdataType"/>
+          </xs:sequence>
+          <xs:attribute name="usecase" type="ns1:useCaseEnum" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:profileDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="delete">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="update">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="makePublic" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="edl">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sources">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="source" nillable="true">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element minOccurs="0" name="metadata" type="ns1:sourceMetadataType"/>
+                      </xs:sequence>
+                      <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                      <xs:attribute name="localDownloadDirectory" type="xs:string"/>
+                      <xs:attribute name="internalLocalPath" type="xs:string"/>
+                      <xs:attribute name="beginTimecode" type="xs:string"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="destination">
+              <xs:complexType>
+                <xs:sequence/>
+                <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                <xs:attribute name="internalLocalPath" type="xs:string"/>
+                <xs:attribute name="fileformat" type="ns1:fileformatEnum"/>
+                <xs:attribute name="muxerOptionalArgs" type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element default="false" minOccurs="0" name="hint" type="xs:boolean"/>
+            <xs:element default="false" minOccurs="0" name="httpdownloadable" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="assetinformation">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="ns1:assetInformationItemType"/>
+                </xs:sequence>
+                <xs:attribute name="behavior" type="ns1:behaviorEnum" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="alternateinformation" type="ns1:alternateInformationType"/>
+            <xs:element minOccurs="0" name="cut" type="ns1:cutType"/>
+            <xs:element minOccurs="0" name="filters">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludebitraterange" nillable="true" type="ns1:bitrateRangeExclusionType"/>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="excludelang" nillable="true" type="ns1:langExclusionType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="analyze">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoAnalyzeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="process" nillable="true">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoProcessType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="transcode">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="videotracks" type="ns1:videoTranscodeType"/>
+                  <xs:element name="audiotracks" type="ns1:audioTranscodeType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="streaming">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="manifests" type="ns1:manifestsType"/>
+                </xs:sequence>
+                <xs:attribute name="preferredSegmentDuration" type="xs:long" use="required"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="drm">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="videotracks" type="ns1:drmInfoType"/>
+                  <xs:element minOccurs="0" name="audiotracks" type="ns1:drmInfoType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="userdata" nillable="true" type="ns1:userdataType"/>
+          </xs:sequence>
+          <xs:attribute name="usecase" type="ns1:useCaseEnum" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="detail">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detailResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:profileDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDescription">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDescriptionResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="ProfileValidationException" type="tns:ProfileValidationException"/>
+  <xs:complexType name="ProfileValidationException">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createResponse">
+    <wsdl:part name="parameters" element="tns:createResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part name="parameters" element="tns:delete">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listResponse">
+    <wsdl:part name="parameters" element="tns:listResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateDescription">
+    <wsdl:part name="parameters" element="tns:updateDescription">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateEdl">
+    <wsdl:part name="parameters" element="tns:updateEdl">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResponse">
+    <wsdl:part name="parameters" element="tns:updateResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ProfileValidationException">
+    <wsdl:part name="ProfileValidationException" element="tns:ProfileValidationException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part name="parameters" element="tns:deleteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part name="parameters" element="tns:create">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateDescriptionResponse">
+    <wsdl:part name="parameters" element="tns:updateDescriptionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="list">
+    <wsdl:part name="parameters" element="tns:list">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateTitleResponse">
+    <wsdl:part name="parameters" element="tns:updateTitleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateEdlResponse">
+    <wsdl:part name="parameters" element="tns:updateEdlResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="detailResponse">
+    <wsdl:part name="parameters" element="tns:detailResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateTitle">
+    <wsdl:part name="parameters" element="tns:updateTitle">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part name="parameters" element="tns:update">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="detail">
+    <wsdl:part name="parameters" element="tns:detail">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProfileEndpoint">
+    <wsdl:operation name="updateTitle">
+      <wsdl:input name="updateTitle" message="tns:updateTitle">
+    </wsdl:input>
+      <wsdl:output name="updateTitleResponse" message="tns:updateTitleResponse">
+    </wsdl:output>
+      <wsdl:fault name="ProfileValidationException" message="tns:ProfileValidationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateEdl">
+      <wsdl:input name="updateEdl" message="tns:updateEdl">
+    </wsdl:input>
+      <wsdl:output name="updateEdlResponse" message="tns:updateEdlResponse">
+    </wsdl:output>
+      <wsdl:fault name="ProfileValidationException" message="tns:ProfileValidationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <wsdl:input name="list" message="tns:list">
+    </wsdl:input>
+      <wsdl:output name="listResponse" message="tns:listResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input name="create" message="tns:create">
+    </wsdl:input>
+      <wsdl:output name="createResponse" message="tns:createResponse">
+    </wsdl:output>
+      <wsdl:fault name="ProfileValidationException" message="tns:ProfileValidationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input name="delete" message="tns:delete">
+    </wsdl:input>
+      <wsdl:output name="deleteResponse" message="tns:deleteResponse">
+    </wsdl:output>
+      <wsdl:fault name="ProfileValidationException" message="tns:ProfileValidationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input name="update" message="tns:update">
+    </wsdl:input>
+      <wsdl:output name="updateResponse" message="tns:updateResponse">
+    </wsdl:output>
+      <wsdl:fault name="ProfileValidationException" message="tns:ProfileValidationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="detail">
+      <wsdl:input name="detail" message="tns:detail">
+    </wsdl:input>
+      <wsdl:output name="detailResponse" message="tns:detailResponse">
+    </wsdl:output>
+      <wsdl:fault name="ProfileValidationException" message="tns:ProfileValidationException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateDescription">
+      <wsdl:input name="updateDescription" message="tns:updateDescription">
+    </wsdl:input>
+      <wsdl:output name="updateDescriptionResponse" message="tns:updateDescriptionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ProfileValidationException" message="tns:ProfileValidationException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProfileEndpointServiceSoapBinding" type="tns:ProfileEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="updateTitle">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateTitle">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateTitleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProfileValidationException">
+        <soap:fault name="ProfileValidationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateEdl">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateEdl">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateEdlResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProfileValidationException">
+        <soap:fault name="ProfileValidationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="list">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="create">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProfileValidationException">
+        <soap:fault name="ProfileValidationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="delete">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProfileValidationException">
+        <soap:fault name="ProfileValidationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="update">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProfileValidationException">
+        <soap:fault name="ProfileValidationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="detail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="detail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="detailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProfileValidationException">
+        <soap:fault name="ProfileValidationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateDescription">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateDescription">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateDescriptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProfileValidationException">
+        <soap:fault name="ProfileValidationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProfileEndpointService">
+    <wsdl:port name="ProfileEndpointImplPort" binding="tns:ProfileEndpointServiceSoapBinding">
+      <soap:address location="to_be_overridden_Add_?wsdl_to_the_endpoint_url_to_get_a_WSDL_with_actual_endpoint"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

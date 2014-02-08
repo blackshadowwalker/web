@@ -1,0 +1,28 @@
+.title
+{
+    font-family: "ËÎÌו";
+    font-size: 18px;
+    line-height: normal;
+    font-weight: bold;
+    background-position: center;
+    text-align: center
+}
+
+body
+{
+    font-family: "ËÎÌו";
+    font-size: 12px;
+    color: #808080;
+    scrollbar-base-color: #ECE9D8;
+    text-align: left;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+TD{COLOR: #333333; FONT-SIZE: 9pt; LINE-HEIGHT: 13pt}
+
+
+

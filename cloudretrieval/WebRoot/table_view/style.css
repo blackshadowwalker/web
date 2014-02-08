@@ -1,0 +1,147 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; BACKGROUND: #fff; PADDING-BOTTOM: 0px; MARGIN: 4px; PADDING-TOP: 0px; FONT-FAMILY: tahoma, arial
+}
+A {
+	COLOR: #03c; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #03c; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #03c; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #c00
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 10px 0px; PADDING-TOP: 0px
+}
+PRE {
+	BORDER-RIGHT: #99c 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #99c 1px solid; PADDING-LEFT: 4px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; BORDER-LEFT: #99c 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #99c 1px solid
+}
+H1 {
+	FONT-SIZE: 25px; MARGIN: 18px 12px
+}
+TABLE {
+	BORDER-COLLAPSE: collapse
+}
+TH {
+	BORDER-RIGHT: #999 0px solid; PADDING-RIGHT: 3px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; BORDER-LEFT: #999 0px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #999 0px solid
+}
+TD {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; BORDER-LEFT: #999 0px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #999 0px solid
+}
+.textbox {
+	BORDER-RIGHT: #bbb 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #bbb 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #bbb 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #bbb 1px solid
+}
+.datagrid_meta INPUT {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px solid; BORDER-LEFT: #ccc 1px solid; BORDER-BOTTOM: #ccc 1px solid
+}
+.title2 {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FONT-SIZE: 15px; PADDING-BOTTOM: 0px; MARGIN: 12px 0px; BORDER-LEFT: #333 5px solid; PADDING-TOP: 0px
+}
+.title3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 13px; PADDING-BOTTOM: 0px; MARGIN: 8px 0px; PADDING-TOP: 0px
+}
+#footer {
+	CLEAR: both; PADDING-RIGHT: 6px; BORDER-TOP: #3af 2px solid; MARGIN-TOP: 16px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px; TEXT-ALIGN: center
+}
+#main {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 840px; PADDING-TOP: 0px
+}
+#menu {
+	CLEAR: both; FLOAT: left; MARGIN-BOTTOM: 10px; WIDTH: 100%; BORDER-BOTTOM: #3af 4px solid; FONT-FAMILY: arial
+}
+#menu UL {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#menu LI {
+	BORDER-RIGHT: #cdd 2px solid; FONT-SIZE: 14px; FLOAT: left; MARGIN: 0px 2px; LINE-HEIGHT: 16px
+}
+#menu LI A {
+	BORDER-RIGHT: #666 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #666 1px solid; PADDING-LEFT: 4px; FONT-WEIGHT: bold; BACKGROUND: #fff; FLOAT: left; PADDING-BOTTOM: 8px; BORDER-LEFT: #666 1px solid; COLOR: #36f; PADDING-TOP: 8px; TEXT-DECORATION: none
+}
+#menu LI A.on {
+	BACKGROUND: #3af; COLOR: #333
+}
+#menu LI A:hover {
+	BACKGROUND: #3af; COLOR: #fff
+}
+#sel_div {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; MARGIN: 6px 2px; BORDER-LEFT: #999 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #999 1px solid
+}
+#sel_div TD {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.PagerView {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; FONT-SIZE: 12px; PADDING-BOTTOM: 8px; COLOR: #333; LINE-HEIGHT: 100%; PADDING-TOP: 8px; FONT-FAMILY: tahoma, arial; TEXT-ALIGN: center
+}
+.PagerView SPAN {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #ccc 1px solid; PADDING-LEFT: 6px; PADDING-BOTTOM: 3px; MARGIN: 0px 1px; BORDER-LEFT: #ccc 1px solid; COLOR: #999; PADDING-TOP: 3px; BORDER-BOTTOM: #ccc 1px solid
+}
+.PagerView SPAN.on {
+	BORDER-RIGHT: #666 1px solid; BORDER-TOP: #666 1px solid; FONT-WEIGHT: bold; BACKGROUND: #39f; BORDER-LEFT: #666 1px solid; COLOR: #fff; BORDER-BOTTOM: #666 1px solid
+}
+.PagerView A {
+	COLOR: #00f; TEXT-DECORATION: none
+}
+.PagerView A SPAN {
+	BORDER-RIGHT: #66c 1px solid; BORDER-TOP: #66c 1px solid; BORDER-LEFT: #66c 1px solid; COLOR: #33f; BORDER-BOTTOM: #66c 1px solid
+}
+.TableView .datagrid_meta {
+	LINE-HEIGHT: 22px
+}
+.TableView .datagrid_meta .title {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px
+}
+.TableView .datagrid_meta .filter INPUT {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #ccc 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; MARGIN: 0px 4px; BORDER-LEFT: #ccc 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #ccc 1px solid;
+}
+.TableView TABLE {
+	FONT-SIZE: 12px; BORDER-COLLAPSE: collapse;	
+}
+.TableView DIV.datagrid_div {
+	BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BORDER-LEFT: #999 1px solid; BORDER-BOTTOM: #999 1px solid
+}
+.TableView TABLE.datagrid {
+	WIDTH: 100%; BORDER-COLLAPSE: separate;
+}
+.TableView TABLE.datagrid TH {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BACKGROUND: #ddd; PADDING-BOTTOM: 1px; BORDER-TOP-STYLE: none; PADDING-TOP: 1px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-ALIGN: left; BORDER-BOTTOM-STYLE: none
+}
+.TableView TABLE.datagrid TD {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-TOP-STYLE: none; PADDING-TOP: 2px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.TableView TABLE.datagrid TR.odd {
+	BACKGROUND: #fff
+}
+.TableView TABLE.datagrid TR.even {
+	BACKGROUND: #eee
+}
+.TableView TABLE.datagrid TR.marked {
+	BACKGROUND: #ee9
+}
+.TableView TABLE.datagrid TR:hover {
+	BACKGROUND: #9cf
+}
+.TableView TABLE.datagrid TR.hover {
+	BACKGROUND: #9cf
+}
+.SelectorView .selector_table {
+	WIDTH: 100%
+}
+.SelectorView .selector_table .src {
+	WIDTH: 50%
+}
+.SelectorView .selector_table .dst {
+	WIDTH: 50%
+}
+.TableView A {
+	COLOR: #36f
+}
+.TableView A:link {
+	COLOR: #36f
+}
+.TableView A:visited {
+	COLOR: #36f
+}

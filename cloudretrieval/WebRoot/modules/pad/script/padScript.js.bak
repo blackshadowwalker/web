@@ -1,0 +1,425 @@
+/*
+	type对应值：
+	
+	1--检查问题屡
+	2--问题整改率
+	3--稽核差错率
+	4--差错整改率
+	5--对账率
+	6--备付率
+	7--账户合规率
+	8--柜员权限合规率
+
+*/
+
+
+function getJKZB(thispath,type){
+
+	var sort = "";
+	
+	if(type == "select"){
+	
+		sort = document.getElementById("i_order_rate").value;
+		
+		if(sort == "n") return;
+
+	}
+	else{
+		
+		sort = document.getElementById("hidden_sort").value
+	}
+	
+	
+	var dept=document.getElementById("hidden_dept").value;
+	
+	
+	padBean.getJKZB(dept,sort,
+    {
+        callback:function(data)
+        {
+        
+        	var divElem=document.getElementById("zbjk_div");
+			
+			alert("返回数据："+data);
+
+            if(data!="")
+            {
+            	var array_ele=data.split("|");
+            	
+            	var titleElems=array_ele[0].split("</C>");
+            	
+            	var info= new StringBuffer();
+            	
+            	info.append("<table style='width:100%;border: #ACA899 solid 1px;cellspacing:0px;cellpadding:0px;'>");
+            	
+            	info.append("<tr style='font-size: 16px;font-weight: bold;'>");
+            	
+            	info.append("<td style='border: #ACA899 solid 1px;text-align:center;' width='17%'>").append(titleElems[0]).append("</td>");//机构列
+            	
+            	var selElem=document.getElementById("i_order_rate");
+            	
+            	 for(var i=selElem.length-1;i>0;i--){
+	    	
+			   		selElem.options.remove(i);
+			
+			   	}
+            	
+            	for(var i=1;i<titleElems.length-2;i+=2){
+
+            		info.append("<td style='border: #ACA899 solid 1px;text-align:center;' width='9%'><a href='").append(thispath).append("/modules/pad/jsp/pad_rate.jsp?type=").append(titleElems[(i+1)]).append("&dept=").append(document.getElementById("hidden_dept").value).append("'>").append(titleElems[i]).append("</a></td>");
+            	
+            		selElem.add(new Option(titleElems[i],titleElems[(i+1)]));
+            	}
+            	
+            	selElem.value = sort;
+            	
+            	
+            	//info+="<td style='border: #ACA899 solid 1px;text-align:center;' width='9%'>"+titleElems[titleElems.length-2]+"</td>";//综合指标列
+            	
+            	info.append("</tr>");
+            	
+            	var rq_header=array_ele[2].split(",");
+            	
+            	info.append("<tr style='font-size: 16px;'>");
+            	
+            	info.append("<td style='border: #ACA899 solid 1px;text-align:center;'>统计范围</td>");//统计范围
+            	
+            	for(var i=0;i<rq_header.length;i++){
+            		
+            		info.append("<td style='border: #ACA899 solid 1px;text-align:center;'>").append(rq_header[i]).append("</td>");
+            	}
+            	
+            	info.append("</tr>");
+            	
+            	var dataElem=array_ele[1].split("</R>");
+            	
+            	var dept_code="";
+            	
+            	for(var i=0;i<dataElem.length-1;i++){
+            		
+            		var cols=dataElem[i].split("</C>");
+            		
+            		if(i%2==0){
+            		
+            			info.append("<tr style='background-color:#FFFFFF'>");
+            		}
+            		else{
+            			
+            			info.append("<tr>");
+            		}
+            		
+            		dept_code=cols[0].substring(0,cols[0].indexOf("-"));
+            		
+            		var flag=false; //是否营业机构
+            		
+            		flag=isYYjg(dept_code);
+            		
+            		if(flag==true || dept_code==dept)//营业机构
+            		{
+            			info.append("<td style='border: #ACA899 solid 1px;text-align:center;'>").append(cols[0]).append("</td>");
+            		}
+            		else{
+            			
+            			info.append("<td style='border: #ACA899 solid 1px;text-align:center;'><a href='").append(thispath).append("/modules/pad/jsp/pad.jsp?dept=").append(dept_code).append("&sort=").append(sort).append("'>").append(cols[0]).append("</a></td>");
+            		}
+            		
+            		for(var j=1;j<cols.length-1;j++){
+            			
+            			info.append("<td style='border: #ACA899 solid 1px;text-align:center;'>").append(cols[j]).append("</td>");
+            		}
+            		
+            		info.append("</tr>");
+            		
+            	}
+            	
+            	info.append("</table>");
+            	
+            	
+            	divElem.innerHTML=info.toString();
+            }
+            else{
+            	
+            	divElem.innerHTML="";
+            	
+            	document.getElementById("order_td").style.display="none";
+            }
+          
+        },
+        exceptionHandler:function(err_info)
+        {
+            
+            if (err_info!="")
+            {
+                alert(err_info);
+                if(err_info.indexOf("<bean:message key="msg.error.error" bundle="<%=language%>"/>")<0){
+                	window.open(thispath+"/logoffAction.do?"+new Date(),"_parent");
+                }
+            }
+            else
+            {
+                alert("<bean:message key="msg.error.timeOutAndLogout" bundle="<%=language%>"/>");
+                window.open(thispath+"/logoffAction.do?"+new Date(),"_parent");
+            }    
+        }
+    });
+}
+
+function getJKZB_mon(dept,type,thispath){
+
+	document.getElementById("mon_div").innerHTML="<table id='mon_t_id' style='width:100%;border: #ACA899 solid 1px;cellspacing:0px;cellpadding:0px;'></table>";
+	
+	
+	var table=document.getElementById("mon_t_id");
+
+	/*
+	for(var k=table.rows.length-1;k>0;k--){
+	
+		table.deleteRow(k);
+	}
+	*/
+	
+	padBean.getJKZB_mon(dept,type,
+    {
+        callback:function(data)
+        {
+        
+            if(data!="")
+            {
+            	var array_ele=data.split("|");
+            	
+            	var titleElems=array_ele[0].split(",");
+            	
+            	var newRow=table.insertRow();
+            	
+            	var newCell=newRow.insertCell();
+            	
+            	newCell.style.border="#ACA899 solid 1px";
+            	
+            	newCell.setAttribute("width",'10%');
+            	
+            	newCell.innerHTML="<font style='font-size:12px;font-weight: bold;'><center>机构</center></font>";
+            	
+            	for(var k=0;k<titleElems.length;k++){
+            		
+            		var newCell=newRow.insertCell();
+            	
+	            	newCell.style.border="#ACA899 solid 1px";
+	            	
+	            	newCell.style.align="center";
+	            	
+	            	newCell.setAttribute("width",'5%');
+	            	
+	            	newCell.innerHTML="<font style='font-size:12px;font-weight: bold;'><center>"+titleElems[k]+"</center></font>";
+            	}
+            	
+            	var newCell=newRow.insertCell();
+            	
+            	newCell.style.border="#ACA899 solid 1px";
+            	
+            	newCell.style.align="center";
+            	
+            	newCell.innerHTML="<font style='font-size:12px;font-weight: bold;'><center>图表</center></font>";
+            	
+            	
+            	var dataElem=array_ele[1].split("</R>");
+            	
+            	var dd=null; //点的数据
+            	
+            	var x_info=titleElems; // x轴月份标示
+            	
+            	var tmp="";
+            	
+            	var y_max=array_ele[2];
+            	
+            	for(var i=0;i<dataElem.length-1;i++){
+            		
+            		dd=new StringBuffer();
+            		
+            		var cols=dataElem[i].split("</C>");
+            		
+            		if(i%2==0){
+            		
+            			info="<tr style='background-color:#FFFFFF'>";
+            			
+            			var newRow=table.insertRow();
+            			
+            			newRow.style.background="#FFFFFF";
+            		}
+            		else{
+            			
+            			var newRow=table.insertRow();
+            		}
+            		
+            		var newCell=newRow.insertCell();
+            		
+            		newCell.style.border="#ACA899 solid 1px";
+            	
+	            	newCell.style.align="center";
+	            	
+	            	newCell.innerHTML=cols[0];
+            		
+            		for(var j=1;j<cols.length-1;j++){
+            		
+            			if(j==1){
+            				
+            				dd.append((parseFloat(cols[j])/100).toFixed(8));
+            			}	
+            			else{
+            				
+            				dd.append(",").append((parseFloat(cols[j])/100).toFixed(8));
+            			}
+            			
+            			var newCell=newRow.insertCell();
+            		
+	            		newCell.style.border="#ACA899 solid 1px";
+	            	
+		            	newCell.style.align="center";
+		            	
+		            	newCell.innerHTML=cols[j];
+            		}
+            		
+            		var newCell=newRow.insertCell();
+            		
+            		newCell.style.border="#ACA899 solid 1px";
+            	
+	            	newCell.style.align="center";
+	            	
+	            	tmp="graph_"+i;
+	            	
+	            	newCell.innerHTML="<div id='"+tmp+"'></div>";
+	            	
+	            	var rate_name="";
+	            	
+	            	if(type==1){
+		
+						rate_name="检查问题率";
+					}
+					else if(type==2){
+						
+						rate_name="问题整改率";
+					}
+					else if(type==3){
+						
+						rate_name="稽核差错率";
+					}
+					else if(type==4){
+						
+						rate_name="差错整改率";
+					}
+					else if(type==5){
+						
+						rate_name="对账率";
+						
+						y_max=1;
+					}
+					else if(type==6){
+						
+						rate_name="现金备付率";
+					}
+					else if(type==7){
+						
+						rate_name="账户合规率";
+						
+						y_max=1;
+					}
+					else if(type==8){
+						
+						rate_name="柜员权限合规率";
+						
+						y_max=1;
+					}
+					else if(type==9){
+						
+						rate_name="现金综合运用率";
+						
+						//y_max=1;
+					}
+					else if(type==10){
+						
+						rate_name="账户报备率";
+						
+						y_max=1;
+					}
+					else if(type==11){
+						
+						rate_name="电子印鉴建库率";
+						
+						y_max=1;
+					}
+	            	
+					
+            		getFlash(5,thispath,dd.toString(),x_info,tmp,y_max,rate_name);
+            		
+            		dd=null;
+            		tmp=null;
+            		
+            	}
+            	
+            }
+            /*else{
+            	
+            	divElem.innerHTML="";
+            }*/
+            
+        },
+        exceptionHandler:function(err_info)
+        {
+            
+            if (err_info!="")
+            {
+                alert(err_info);
+                if(err_info.indexOf("<bean:message key="msg.error.error" bundle="<%=language%>"/>")<0){
+                	window.open(thispath+"/logoffAction.do?"+new Date(),"_parent");
+                }
+            }
+            else
+            {
+                alert("<bean:message key="msg.error.timeOutAndLogout" bundle="<%=language%>"/>");
+                window.open(thispath+"/logoffAction.do?"+new Date(),"_parent");
+            }    
+        }
+    });
+}
+
+function isYYjg(dept){
+	
+	dwr.engine.setAsync(false);
+	
+	var flag=false;
+	
+	padBean.isYYJG(dept,
+    {
+        callback:function(data)
+        {
+        	if(data==4){
+        		
+        		flag=true;
+        	}
+        	else{
+        		
+        		flag=false;
+        	}
+        },
+        exceptionHandler:function(err_info)
+        {
+            
+            query_button.disabled=false;
+            if (err_info!="")
+            {
+                alert(err_info);
+                if(err_info.indexOf("<bean:message key="msg.error.error" bundle="<%=language%>"/>")<0){
+                	window.open(thispath+"/logoffAction.do?"+new Date(),"_parent");
+                }
+            }
+            else
+            {
+                alert("<bean:message key="msg.error.timeOutAndLogout" bundle="<%=language%>"/>");
+                window.open(thispath+"/logoffAction.do?"+new Date(),"_parent");
+            }    
+        }
+    });
+	
+	dwr.engine.setAsync(true);
+	
+	return flag;
+}

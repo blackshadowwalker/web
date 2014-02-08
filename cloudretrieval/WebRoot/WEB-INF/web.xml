@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+	<display-name>Struts Blank Application</display-name>
+
+	<!-- Global Parameters -->
+	<!-- The database info see config/jdbc.properties -->
+	<context-param>
+		<param-name>systemName</param-name>
+		<param-value>智能交通云分析系统</param-value>
+		<description></description>
+	</context-param>
+	
+	<context-param>
+		<param-name>accessAddr</param-name>
+		<param-value></param-value>
+		<description>10.168.1.*,127.0.0.1</description>
+	</context-param>
+	<context-param>
+		<param-name>deny</param-name>
+		<param-value></param-value>
+		<description>10.168.1.*,127.0.0.1</description>
+	</context-param>
+	
+	<context-param>
+		<param-name>basePathExtName</param-name>
+		<param-value>cloudretrievalExt</param-value>
+		<description>If the you want save the upload file at the sub directory of this webapp ,this value should be appName</description>
+	</context-param>
+	<context-param>
+		<param-name>basePathExt</param-name>
+		<param-value>${catalina.base}/webapps</param-value>
+	</context-param>
+	<context-param>
+		<param-name>logoPath</param-name>
+		<param-value>upload/logo</param-value>
+	</context-param>
+	<context-param>
+		<param-name>databasePath</param-name>
+		<param-value>database</param-value>
+		<description></description>
+	</context-param>
+	<context-param>
+		<param-name>uploadPath</param-name>
+		<param-value>upload</param-value>
+		<description></description>
+	</context-param>
+	<context-param>
+		<param-name>configLocation</param-name>
+		<param-value>config/jdbc.properties</param-value>
+		<description></description>
+	</context-param>
+	<context-param>
+		<param-name>itsupload</param-name>
+		<param-value>upload/ITS_upload</param-value>
+		<description></description>
+	</context-param>
+	<context-param>
+		<param-name>picture</param-name>
+		<param-value>图片不存在!</param-value>
+		<description></description>
+	</context-param>
+	
+	
+	
+	
+	<context-param>
+		<param-name>squeezedEnable</param-name>
+		<param-value>0</param-value>
+		<description></description>
+	</context-param>
+
+	<!--  Spring ApplicationContext  -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- Standard Action Servlet Configuration (with debugging) -->
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>modules.base.ActionServleter</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>application</param-name>
+			<param-value>language</param-value>  
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<filter>
+		<filter-name>AccessFilter</filter-name>
+		<filter-class>com.filter.AccessFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AccessFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+ 
+
+	<filter>
+		<filter-name>imageFilter</filter-name>
+		<filter-class>com.filter.ImageFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>imageFilter</filter-name>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.jpeg</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.gif</url-pattern>
+		<url-pattern>*.bmp</url-pattern>
+		<url-pattern>*.ico</url-pattern>
+	</filter-mapping>
+	
+
+	<!--
+		<servlet> <servlet-name>start_dxmc</servlet-name>
+		<servlet-class>modules.base.start_dxmc</servlet-class>
+		<load-on-startup>1</load-on-startup> </servlet> <servlet-mapping>
+		<servlet-name>start_dxmc</servlet-name>
+		<url-pattern>/servlet/start_dxmc</url-pattern> </servlet-mapping>
+	-->
+	
+	<!-- 
+	<servlet>
+		<servlet-name>SpringContextServlet</servlet-name>
+		<servlet-class>org.springframework.web.ContextLoaderServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	-->
+	
+
+	<!-- Ajax Servlet -->
+	<servlet>
+		<servlet-name>invoker</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet
+		</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!-- CSRF Security Error Solution -->
+		<init-param>
+			<param-name>crossDomainSessionSecurity</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allowScriptTagRemoting</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	
+
+	<!--
+		<servlet> <servlet-name>RJ</servlet-name>
+		<servlet-class>modules.rj.RJServlet</servlet-class> <init-param>
+		<param-name>allowGetForSafariButMakeForgeryEasier</param-name>
+		<param-value>true</param-value> </init-param> <init-param>
+		<param-name>db_driver</param-name>
+		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+		</init-param> <init-param> <param-name>db_url</param-name>
+		<param-value>jdbc:oracle:thin:@46.0.182.8:1521:hxkj</param-value>
+		</init-param> <init-param> <param-name>db_url</param-name>
+		<param-value>jdbc:oracle:thin:@192.168.1.151:1521:xe</param-value>
+		</init-param> <init-param> <param-name>db_user</param-name>
+		<param-value>mbank</param-value> </init-param> <init-param>
+		<param-name>db_pw</param-name> <param-value>hx_mbank_8</param-value>
+		</init-param> <init-param> <param-name>datas_path</param-name>
+		<param-value>/oracle/abms_datas</param-value> </init-param>
+		<init-param> <param-name>logs_path</param-name>
+		<param-value>/oracle/abms_datas/load_logs</param-value> </init-param>
+		<init-param> <param-name>run</param-name>
+		<param-value>false</param-value> </init-param> <init-param>
+		<param-name>db_driver</param-name>
+		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+		</init-param> <init-param> <param-name>db_url</param-name>
+		<param-value>jdbc:oracle:thin:@46.0.191.78:1521:abmsdb</param-value>
+		</init-param> <init-param> <param-name>db_user</param-name>
+		<param-value>abms</param-value> </init-param> <init-param>
+		<param-name>db_pw</param-name> <param-value>abms</param-value>
+		</init-param> <init-param> <param-name>datas_path</param-name>
+		<param-value>/home/ap/abms/abms_datas</param-value> </init-param>
+		<init-param> <param-name>logs_path</param-name>
+		<param-value>/home/ap/abms/abms_datas/load_logs</param-value>
+		</init-param> <init-param> <param-name>run</param-name>
+		<param-value>true</param-value> </init-param>
+
+		<load-on-startup>4</load-on-startup> </servlet>
+	-->
+
+	<servlet>
+		<servlet-name>log4j</servlet-name>
+		<servlet-class>modules.base.Log4j</servlet-class>
+		<init-param>
+			<param-name>log4j</param-name>
+			<param-value>WEB-INF\log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>download</servlet-name>
+		<servlet-class>fileHandle.Download</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>jcbgReport</servlet-name>
+		<jsp-file>/template/jcbgReport.jsp</jsp-file>
+	</servlet>
+
+	<servlet>
+		<servlet-name>jcdgReport</servlet-name>
+		<jsp-file>/template/jcdgReport.jsp</jsp-file>
+	</servlet>
+
+	<servlet>
+		<servlet-name>sjReport</servlet-name>
+		<jsp-file>/template/sjReport.jsp</jsp-file>
+	</servlet>
+
+	<servlet>
+		<servlet-name>sjTxtReport</servlet-name>
+		<jsp-file>/template/sjTxtReport.jsp</jsp-file>
+	</servlet>
+
+	<servlet>
+		<servlet-name>stkReport</servlet-name>
+		<jsp-file>/template/stkReport.jsp</jsp-file>
+	</servlet>
+
+	<servlet>
+		<servlet-name>pxxxReport</servlet-name>
+		<jsp-file>/template/pxxxAllReport.jsp</jsp-file>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CaptchaCode</servlet-name>
+		<servlet-class>com.image.CaptchaCode</servlet-class>
+	</servlet>
+
+	<!-- CaptchaCode getCode: session.getAttribute("CaptchaCode") -->
+	<servlet-mapping>
+		<servlet-name>CaptchaCode</servlet-name>
+		<url-pattern>/CaptchaCode</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>getCaptchaCodeNum</servlet-name>
+		<servlet-class>com.image.CaptchaCodeMgr</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>getCaptchaCodeNum</servlet-name>
+		<url-pattern>/getCaptchaCodeNum</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>saveUploadFile</servlet-name>
+		<servlet-class>modules.cloud.fileMgr.saveUploadFile</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>saveUploadFile</servlet-name>
+		<url-pattern>/saveUploadFile</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>uploadServlet</servlet-name>
+		<servlet-class>com.storage.uploadServlet.uploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadServlet</servlet-name>
+		<url-pattern>/upload.do</url-pattern>
+	</servlet-mapping>
+	
+	
+
+	<!-- Standard Action Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- Ajax Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>download</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>jcbgReport</servlet-name>
+		<url-pattern>/jcbgReport</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>jcdgReport</servlet-name>
+		<url-pattern>/jcdgReport</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>sjReport</servlet-name>
+		<url-pattern>/sjReport</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>sjTxtReport</servlet-name>
+		<url-pattern>/sjTxtReport</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>stkReport</servlet-name>
+		<url-pattern>/stkReport</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>pxxxReport</servlet-name>
+		<url-pattern>/pxxxReport</url-pattern>
+	</servlet-mapping>
+
+
+
+	<mime-mapping>
+		<extension>xls</extension>
+		<mime-type>application/excel</mime-type>
+	</mime-mapping>
+
+	<mime-mapping>
+		<extension>doc</extension>
+		<mime-type>application/msword</mime-type>
+	</mime-mapping>
+
+	<mime-mapping>
+		<extension>pdf</extension>
+		<mime-type>application/pdf</mime-type>
+	</mime-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>jsp</servlet-name>
+		<url-pattern>*.js</url-pattern>  
+    </servlet-mapping>  
+    
+    
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error/403.jsp</location>
+	</error-page>
+
+	<!-- The Usual Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!--
+		<filter> <filter-name>Set Character Encoding</filter-name>
+		<filter-class>base.baseFilter</filter-class> </filter>
+		<filter-mapping> <filter-name>Set Character Encoding</filter-name>
+		<url-pattern>/*</url-pattern> </filter-mapping>
+	-->
+
+	<!-- Struts Tag Library Descriptors -->
+	<taglib>
+		<taglib-uri>/tags/struts-bean</taglib-uri>
+		<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+	</taglib>
+
+	<taglib>
+		<taglib-uri>/tags/struts-html</taglib-uri>
+		<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+	</taglib>
+
+	<taglib>
+		<taglib-uri>/tags/struts-logic</taglib-uri>
+		<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+	</taglib>
+
+	<taglib>
+		<taglib-uri>/tags/struts-nested</taglib-uri>
+		<taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+	</taglib>
+
+	<taglib>
+		<taglib-uri>/tags/struts-tiles</taglib-uri>
+		<taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+	</taglib>
+
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>modules.base.Configuration</listener-class>
+	</listener>
+	<listener>
+		<listener-class>modules.base.ContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>modules.base.SessionListener</listener-class>
+	</listener>
+
+
+
+</web-app>

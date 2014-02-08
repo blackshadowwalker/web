@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UserMediaRootManagerEndpointService" targetNamespace="http://www.medianate.com/api/usermediaroot" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.medianate.com/api/usermediaroot" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.medianate.com/api/usermediaroot" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.medianate.com/api/usermediaroot">
+  <xs:element name="createSubDirectory" type="tns:createSubDirectory"/>
+  <xs:element name="createSubDirectoryResponse" type="tns:createSubDirectoryResponse"/>
+  <xs:element name="listFiles" type="tns:listFiles"/>
+  <xs:element name="listFilesResponse" type="tns:listFilesResponse"/>
+  <xs:element name="userMediaFile" type="tns:userMediaFile"/>
+  <xs:complexType name="listFiles">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="listFilesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userMediaFile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userMediaFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="diffusionUrl" type="xs:string"/>
+      <xs:element name="directory" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="relativePath" type="xs:string"/>
+      <xs:element minOccurs="0" name="relativeURI" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createSubDirectory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
+      <xs:element minOccurs="0" name="newSubDirectoryName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createSubDirectoryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SchlitterException" type="tns:SchlitterException"/>
+  <xs:complexType name="SchlitterException">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="listFiles">
+    <wsdl:part name="parameters" element="tns:listFiles">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createSubDirectory">
+    <wsdl:part name="parameters" element="tns:createSubDirectory">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createSubDirectoryResponse">
+    <wsdl:part name="parameters" element="tns:createSubDirectoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listFilesResponse">
+    <wsdl:part name="parameters" element="tns:listFilesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SchlitterException">
+    <wsdl:part name="SchlitterException" element="tns:SchlitterException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserMediaRootManagerEndpoint">
+    <wsdl:operation name="listFiles">
+      <wsdl:input name="listFiles" message="tns:listFiles">
+    </wsdl:input>
+      <wsdl:output name="listFilesResponse" message="tns:listFilesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createSubDirectory">
+      <wsdl:input name="createSubDirectory" message="tns:createSubDirectory">
+    </wsdl:input>
+      <wsdl:output name="createSubDirectoryResponse" message="tns:createSubDirectoryResponse">
+    </wsdl:output>
+      <wsdl:fault name="SchlitterException" message="tns:SchlitterException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserMediaRootManagerEndpointServiceSoapBinding" type="tns:UserMediaRootManagerEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createSubDirectory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createSubDirectory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createSubDirectoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SchlitterException">
+        <soap:fault name="SchlitterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listFiles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listFiles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listFilesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserMediaRootManagerEndpointService">
+    <wsdl:port name="UserMediaRootManagerEndpointImplPort" binding="tns:UserMediaRootManagerEndpointServiceSoapBinding">
+      <soap:address location="to_be_overridden_Add_?wsdl_to_the_endpoint_url_to_get_a_WSDL_with_actual_endpoint"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
