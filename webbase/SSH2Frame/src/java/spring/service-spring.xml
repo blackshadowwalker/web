@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- ===================================SERVICE bean配置=========================================== -->
+	<bean id="LoginService" class="com.service.impl.LoginServiceImpl" >
+		<property name="loginDao" ref="LoginDao" />
+	</bean>
+
+	<bean id="RightService" class="com.service.impl.RightServiceImpl">
+		<property name="rightDao" ref="RightDao" />
+	</bean>
+	
+	<bean id="RulerService" class="com.service.impl.RulerServiceImpl" >
+		<property name="rulerDao" ref="RulerDao" />
+	</bean>
+	
+	<!-- 车辆管理  -->
+	 
+	<bean id="RoleService" class="com.service.impl.RoleServiceImpl" >
+		<property name="roleDao" ref="RoleDao" />
+	</bean>
+	 
+	<bean id="TestService" class="com.service.impl.TestServiceImpl" >
+		<property name="testDao" ref="TestDao" />
+	</bean>
+	
+		<!-- 部门管理  唐梦岚-->
+	<bean id="DeptService" class="com.service.impl.DeptServiceImpl" >
+		<property name="deptDao" ref="DeptDao" />
+	</bean>
+	
+	<bean id="UserService" class="com.service.impl.UserServiceImpl">
+		<property name="userDao" ref="UserDao"></property>
+	</bean>
+</beans>

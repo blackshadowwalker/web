@@ -1,0 +1,166 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin:0;
+	padding:0;
+	border:0;
+}
+.link {
+	cursor:pointer;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.radius {
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+.bold {
+	font-weight:bold;
+}
+html, body {
+	height: 100%;
+	background:#c1c1c1;
+}
+.container {
+	background-color:#cad0e6;
+	background-image:url(../images/login/background_img.jpg);
+	background-repeat:repeat-x;
+	margin:0 auto;
+	width:1000px;
+	height:auto;
+	min-height:100%;
+}
+
+.header, #main {
+	width:1000px;
+	margin:0 auto;
+}
+#main {
+	padding-bottom:27px;
+	overflow:auto;
+}
+.header {
+	height:102px;
+}
+.logo {
+	margin-left:58px;
+}
+.header_title {
+	background:url(../images/login/longtu_title.png) repeat-x;
+	width:426px;
+	height:37px;
+	margin-left:180px;
+	margin-top:30px;
+}
+.logIn_window {
+	background:url(../images/login/logIn_background.jpg);
+	width:516px;
+	height:223px;
+	padding:180px 242px 0 242px;
+}
+.title {
+	font-family:"黑体";
+	font-size:18px;
+	color:#26457b;
+	margin-bottom:33px;
+}
+.logIn_info_title {
+	font-family:"微软雅黑, 黑体";
+	font-size:14px;
+	color:#26457b;
+}
+.logIn_area {
+	width:330px;
+}
+.news {
+	width:185px;
+}
+.logIn_info {
+	margin-bottom:10px;
+}
+.logIn_info label {
+	display:inline-block;
+	width:58px;
+}
+input {
+	width:213px;
+	height:15px;
+	padding:3px;
+	background:#f8f8f8;
+ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f8f8', endColorstr='#fefefe');
+	background:-moz-linear-gradient(top, #f8f8f8, #fefefe);
+	background:-webkit-gradient(linear, 0 0, 0 bottom, from(#f8f8f8), to(#fefefe));
+	background:-o-linear-gradient(top, #f8f8f8, #fefefe);
+	border:1px solid #cdcdcd;
+	-moz-box-shadow:0 1px 1px #dadbdb;
+	-webkit-box-shadow:0 1px 1px #dadbdb;
+}
+.checkbox_style input {
+	padding:0;
+	height:auto;
+	width:40px;
+	border:0;
+	-moz-box-shadow:0 0 0 ;
+	-webkit-box-shadow:0 0 0 ;
+	vertical-align:top;
+	margin-left:67px;
+	width:auto;
+}
+.checkbox_style {
+	font-size:12px;
+	font-family:"宋体";
+}
+.forgot_password {
+	margin-left:69px;
+	margin-top:-8px;
+	font-family:"宋体";
+	font-size:12px;
+	color:#0362ae;
+}
+.signUp_button {
+	margin:6px 65px 0 66px;
+}
+.logIn_button {
+	margin-top:6px;
+	margin-right:42px;
+}
+.text {
+	font-family:"宋体";
+	font-size:12px;
+	color:#909090;
+	line-height:170%;
+	margin-bottom:16px;
+}
+.more {
+	font-family:"黑体";
+	font-size:18px;
+	color:#565f81;
+}
+.service {
+	margin:20px 0 27px 240px;
+	width:530px;
+}
+.service span {
+	color:#616161;
+}
+.footer.text {
+	color:#a2a9d5;
+}
+.footer {
+	width:1000px;
+	height:27px;
+	position:relative;
+	margin:0 auto;
+	margin-top:-27px;
+	margin-bottom:0;
+	line-height:220%;
+	background:url(../images/login/footer_bg.jpg) repeat-x;
+	text-align:center;
+	clear:both;
+}

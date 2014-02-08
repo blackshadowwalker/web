@@ -1,0 +1,25 @@
+.bg_welcome_table {
+	background-image: url(../images/welcome/bg_wel_center.jpg);
+	background-repeat: repeat-x;
+	background-position: top;
+}
+.bg_welcome_td01 {
+	background-image: url(../images/welcome/icon_wel_01.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+.bg_welcome_td02 {
+	background-image: url(../images/welcome/icon_wel_02.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+.bg_welcome_td03 {
+	background-image: url(../images/welcome/icon_wel_03.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+.bg_welcome_td04 {
+	background-image: url(../images/welcome/icon_wel_04.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}

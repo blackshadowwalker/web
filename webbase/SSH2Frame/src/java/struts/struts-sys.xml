@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- Struts 2的Action必须放在指定的包空间下定义 -->
+	<package name="struts-lh" extends="common" >
+		<action name="LoginAction" class="LoginAction">
+			<result name="SUCCESS">/frame/index.jsp</result>
+			<result name="FAILE">/login.jsp</result>
+		</action>
+		
+		
+		
+		<!-- 车辆管理 -->
+
+		
+		<action name="RoleAction" class="RoleAction">
+			<result name="List">/modules/role/roleQuery.jsp</result>
+			<result name="Update">/modules/role/roleUpdate.jsp</result>
+			<result name="Add">/modules/role/roleAdd.jsp</result>
+		</action>
+		
+		<action name="RulerAction" class="RulerAction">
+			<result name="List">/modules/ruler/rulerQuery.jsp</result>
+			<result name="Update">/modules/ruler/rulerUpdate.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="TestAction" class="TestAction">
+			<result name="List">/test1.jsp</result>
+			<result name="getById">/test2.jsp</result>
+			<result name="Edit">/test3.jsp</result>
+
+		</action>
+		
+			<!-- 部门管理  唐梦岚-->
+		<action name="DeptAction" class="DeptAction">
+			<result name="list">/modules/dept/deptListTree.jsp</result>
+			<result name="deptView">/modules/dept/deptViewTree.jsp</result>
+			<result name="deptBeforAdd">/modules/dept/deptAdd.jsp</result>
+			<result name="addManagerError">/modules/dept/deptListTree.jsp</result>
+			<result name="addNameError">/modules/dept/deptListTree.jsp</result>
+			<result name="updateManagerError">/modules/dept/deptListTree.jsp</result>
+			<result name="updateNameError">/modules/dept/deptListTree.jsp</result>
+			<result name="deptBeforUpdate">/modules/dept/deptUpdate.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="UserAction" class="UserAction">
+			<result name="List">/modules/user/userQuery.jsp</result>
+			<result name="Add">/modules/user/userAdd.jsp</result>
+			<result name="Update">/modules/user/userUpdate.jsp</result>
+		</action>
+	</package>
+</struts>

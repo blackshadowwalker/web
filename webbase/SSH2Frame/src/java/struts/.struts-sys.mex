@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="struts-lh" location="174,165" size="700,315">
+    <action name="LoginAction" location="135,57" size="150,41">
+      <result name="SUCCESS">
+        <resourceEdge source="SUCCESS" routing="0" target="index.jsp" />
+      </result>
+      <result name="FAILE">
+        <resourceEdge source="FAILE" routing="0" target="login.jsp" />
+      </result>
+    </action>
+    <action name="RoleAction" location="0,0" size="0,0">
+      <result name="List">
+        <resourceEdge source="List" routing="0" target="roleQuery.jsp" />
+      </result>
+      <result name="Update">
+        <resourceEdge source="Update" routing="0" target="roleUpdate.jsp" />
+      </result>
+      <result name="Add">
+        <resourceEdge source="Add" routing="0" target="roleAdd.jsp" />
+      </result>
+    </action>
+    <action name="RulerAction" location="0,0" size="0,0">
+      <result name="List">
+        <resourceEdge source="List" routing="0" target="rulerQuery.jsp" />
+      </result>
+      <result name="Update">
+        <resourceEdge source="Update" routing="0" target="rulerUpdate.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="TestAction" location="450,176" size="150,83">
+      <result name="List">
+        <resourceEdge source="List" routing="0" target="test1.jsp" />
+      </result>
+      <result name="getById">
+        <resourceEdge source="getById" routing="0" target="test2.jsp" />
+      </result>
+      <result name="Edit">
+        <resourceEdge source="Edit" routing="0" target="test3.jsp" />
+      </result>
+    </action>
+    <action name="DeptAction" location="0,0" size="0,0">
+      <result name="list">
+        <resourceEdge source="list" routing="0" target="deptListTree.jsp" />
+      </result>
+      <result name="deptView">
+        <resourceEdge source="deptView" routing="0" target="deptView.jsp" />
+      </result>
+      <result name="deptBeforUpdate">
+        <resourceEdge source="deptBeforUpdate" routing="0" target="deptUpdate.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="index.jsp" path="/frame/index.jsp" location="9,185" size="150,55" />
+  <webResource name="test_list.jsp" path="/test_list.jsp" location="509,535" size="150,55" />
+  <webResource name="test2.jsp" path="/test2.jsp" location="334,640" size="150,55" />
+  <webResource name="test3.jsp" path="/test3.jsp" location="159,745" size="150,55" />
+  <webResource name="test1.jsp" path="test1.jsp" location="649,10" size="150,55" />
+  <webResource name="login.jsp" path="/login.jsp" location="0,0" size="0,0" />
+  <webResource name="roleQuery.jsp" path="/modules/role/roleQuery.jsp" location="0,0" size="0,0" />
+  <webResource name="test1.jsp" path="/test1.jsp" location="0,0" size="0,0" />
+  <webResource name="roleUpdate.jsp" path="/modules/role/roleUpdate.jsp" location="0,0" size="0,0" />
+  <webResource name="dept_list.jsp" path="/model/dept_list.jsp" location="0,0" size="0,0" />
+  <webResource name="dept_list_byId.jsp" path="/model/dept_list_byId.jsp" location="0,0" size="0,0" />
+  <webResource name="error.jsp" path="/error.jsp" location="0,0" size="0,0" />
+  <webResource name="roleAdd.jsp" path="/modules/role/roleAdd.jsp" location="0,0" size="0,0" />
+  <webResource name="rulerQuery.jsp" path="/modules/ruler/rulerQuery.jsp" location="0,0" size="0,0" />
+  <webResource name="rulerUpdate.jsp" path="/modules/ruler/rulerUpdate.jsp" location="0,0" size="0,0" />
+  <webResource name="deptListTree.jsp" path="/modules/dept/deptListTree.jsp" location="0,0" size="0,0" />
+  <webResource name="deptView.jsp" path="/modules/dept/deptView.jsp" location="0,0" size="0,0" />
+  <webResource name="deptUpdate.jsp" path="/modules/dept/deptUpdate.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

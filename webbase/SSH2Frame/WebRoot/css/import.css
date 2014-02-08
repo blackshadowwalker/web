@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+.ta-top{
+	margin-left:150px;
+	margin-top:30px;	
+	width:400px; 
+	height:28px;	
+}
+.ta-bo{
+	border-radius: 0px 10px 10px 10px;
+	background:url(../images/import/bg.jpg);
+	margin-left:152px;
+	margin-top:0px;		
+	width:400px; 
+	height:200px;
+}
+.b1{
+	width:400px; 
+	height:200px;
+}
+.button1{
+	background:url(../images/import/button1.png);
+	width:138px;
+	height:28px;
+	border:0px
+}
+.button2{
+	background:url(../images/import/button2.png);
+	width:138px;
+	height:28px;
+	border:0px
+}
