@@ -124,8 +124,41 @@
 					</form>  
 					
 		        </div>
-		        <div class="span3">
-			          	<h3>手机车牌识别</h3>
+		        <div class="span4">
+			          	<h3>手机车牌识别V2</h3>
+			       	<p>
+			       		
+			       	</p>
+					<form  name="LPRecognitionForm" id="LPRecognitionForm"
+						target="hidden_frame" 
+						action="<%=path %>/upload.do?dir=/download-center/apk&saveName=LPRecognition.apk&callback=uploadapk&backup=true" 
+						method="post" ENCTYPE="multipart/form-data" >
+						<input name="myfileapk" style="width:75px;display:none;" onclick="return clearRetInfo();" class="btn btn-info" type="file">
+						<input type="button"  class="btn btn-info" value="上传APK" onclick="document.LPRecognitionForm.myfileapk.click()"> 
+						<span name="apkpath" ></span>
+						&nbsp;&nbsp;
+						<span><a href="?update=true&app_name=LPRecognition">更新检测地址</a></span>
+						<br>
+		          		
+						<div style="height:5px;">&nbsp;</div>
+		          		<input type="hidden" name="name" placeholder="name" value="信帧车牌识别V2" />
+			          	<input type="hidden" name="app_name" placeholder="app_name" value="LPRecognition"/>
+			          	<input type="text" name="versionName" id="versionName" placeholder="版本(e.g: 2.1.0)" value="" onblur="versionChanged(this);"/>
+			          	<span id="versionNameInfo"  for="versionName"></span>
+			          	<input type="hidden" name="versionCode"  for="versionName" placeholder="versionCode(e.g: 122)" value="" /><br/>
+			          	<textarea  name="description" placeholder="描述" rows="10" ></textarea>
+		          		
+		          		<iframe name="hidden_frame" style="display:none;"></iframe><br/>
+						<input type="button" class="btn btn-primary " value="Submit" onclick="chekFileds(this);" >
+						
+						<br>
+						<p name="ret"></p>
+					</form>  
+		        </div>
+		      </div>
+		      <div class="row">
+		        <div class="span4"  >
+			          	<h3>手机车牌识别V1</h3>
 			       	<p>
 			       		
 			       	</p>
@@ -141,7 +174,7 @@
 						<br>
 		          		
 						<div style="height:5px;">&nbsp;</div>
-		          		<input type="hidden" name="name" placeholder="name" value="信帧车牌识别" />
+		          		<input type="hidden" name="name" placeholder="name" value="信帧车牌识别V1" />
 			          	<input type="hidden" name="app_name" placeholder="app_name" value="TelLPR"/>
 			          	<input type="text" name="versionName" id="versionName" placeholder="版本(e.g: 1.2.2)" value="" onblur="versionChanged(this);"/>
 			          	<span id="versionNameInfo"  for="versionName"></span>
@@ -154,12 +187,14 @@
 						<br>
 						<p name="ret"></p>
 					</form>  
-					
 		        </div>
+		        
+	
 				
 			 </div>
 	      </div><!-- end of hero-unit -->
-	      
+	
+	
 	      <div class="row" id="download-apks">
 	      	<div id="download-Loading">
 		      	<center>
@@ -191,10 +226,9 @@
 	
 	
     <script>
-    	$(document).ready(function(){
-			$("textarea[name='description']").val("");
-			var app_names = ["its_sps", "tfMobileAuth", "TelLPR"];
-			for(var i=0; i<3; i++)
+    	function updateDownloadApps(){
+    		var app_names = ["its_sps", "tfMobileAuth", "TelLPR", "LPRecognition"];
+			for(var i=0; i<app_names.length; i++)
 			{
 				var url = "?update=true&app_name="+app_names[i]+"&logdb=false";
 				$.get(url, function(result){
@@ -207,11 +241,11 @@
 						form.children("textarea[name='description']").val(result.description);
 						
 						var html="";
-						html += "	<div class=span4>";
+						html += "	<div class=span3>";
 					    html += "      <h2>"+result.name+"</h2>";
 					    html += "      ";
 					    html += "      <p id=its_spsDownload>";
-					    html += "      	<img src=\"qrservice?text="+result.url+" \" ";
+					    html += "      	<img src=\"qrservlet?text="+result.url+" \" ";
 					    html += "      		class=\"img-rounded\" style=\"width:240px;height:240px;\" >";
 					    html += "      	<br>";
 					    html += "      	<a name=Download href=\" "+result.url+" \" class=\"btn btn-info btn-large\" >Download</a>";
@@ -223,6 +257,10 @@
 					}
 				}, "json");
 			}	
+    	}
+    	$(document).ready(function(){
+			$("textarea[name='description']").val("");
+			updateDownloadApps();
     	});
 		var mForm=null;
     	function chekFileds(obj){

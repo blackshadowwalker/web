@@ -28,8 +28,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  * Input :  text logo
  * Output : QR Coded Image Stream
  * e.g:
- *  http://10.168.1.110/TeleframeService/qrservice?text=http://www.baidu.com&logo="logo/logo.jpg"
- *  http://10.168.1.110/TeleframeService/qrservice?text=http://www.baidu.com&logo="http://www.baidu.com/img/bdlogo.gif"
+ *  <a href ="<%=basePath%>qrservlet?text=http://www.baidu.com"><%=basePath%>qrservlet?text=http://www.baidu.com</a>
+ *  <a href ="<%=basePath%>qrservlet?text=http://www.baidu.com&logo=http://www.baidu.com/img/bdlogo.gif"><%=basePath%>qrservlet?text=http://www.baidu.com&logo=http://www.baidu.com/img/bdlogo.gif</a>
+
     </pre>
   </body>
 </html>

@@ -129,10 +129,13 @@ String basePath = baseServer + path+"/";
     	$(document).ready(function(){
     		 $( "#login" ).draggable();
     		 $( "#userpanel" ).draggable();
-    		 
 			$("textarea[name='description']").val("");
-			var app_names = ["its_sps", "tfMobileAuth", "TelLPR"];
-			for(var i=0; i<3; i++)
+			updateDownloadApps();
+    	});
+    	
+    	function updateDownloadApps(){
+    		var app_names = ["its_sps", "tfMobileAuth", "TelLPR", "LPRecognition"];
+			for(var i=0; i<app_names.length; i++)
 			{
 				var url = "?update=true&app_name="+app_names[i]+"&logdb=false";
 				$.get(url, function(result){
@@ -145,11 +148,11 @@ String basePath = baseServer + path+"/";
 						form.children("textarea[name='description']").val(result.description);
 						
 						var html="";
-						html += "	<div class=span4>";
+						html += "	<div class=span3>";
 					    html += "      <h2>"+result.name+"</h2>";
 					    html += "      ";
 					    html += "      <p id=its_spsDownload>";
-					    html += "      	<img src=\"qrservice?text="+result.url+" \" ";
+					    html += "      	<img src=\"qrservlet?text="+result.url+" \" ";
 					    html += "      		class=\"img-rounded\" style=\"width:240px;height:240px;\" >";
 					    html += "      	<br>";
 					    html += "      	<a name=Download href=\" "+result.url+" \" class=\"btn btn-info btn-large\" >Download</a>";
@@ -161,7 +164,7 @@ String basePath = baseServer + path+"/";
 					}
 				}, "json");
 			}	
-    	});
+    	}
     </script>
   </body>
 </html>

@@ -142,12 +142,10 @@ public class QRCodeUtil {
 		ImageIO.write(image, FORMAT_NAME, new File(destPath));
 	}
 	
-	public static BufferedImage encodeStream(String content, String logoImgPath, String destPath,
+	public static BufferedImage encodeStream(String content, String logoImgPath, 
 			boolean needCompress) throws Exception {
 		BufferedImage image = QRCodeUtil.createImage(content, logoImgPath, needCompress);
-	//	FileUtil.mkdirs(destPath.substring(0,destPath.lastIndexOf("/")));
 		return image;
-	//	ImageIO.write(image, FORMAT_NAME, new File(destPath));
 	}
 
 	/**
