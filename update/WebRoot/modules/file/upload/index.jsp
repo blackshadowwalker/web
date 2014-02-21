@@ -83,11 +83,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<br />
 	error=0 means there's no error.
 	<br />
-
+	<hr>
 	<br />
 	<strong>Demo</strong>: 
 	<a href="modules/file/upload/inputfile.jsp" >input type=file</a> <br />
-
-
+	<h4>
+	<h2>Remote Download Service</h2>
+	<span>
+		<form action="remotedownload?"  method=get>
+		 	URL:<input type=text name="url" style="width:600px;"  value="http://www.baidu.com/img/bdlogo.gif"/>
+		 	<input type="submit"> 
+		</form>
+	</span>
+	
+	
+	<br /><br /><br />
+	<br />
   </body>
 </html>

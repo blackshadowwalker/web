@@ -250,7 +250,7 @@ public class uploadServlet extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)    
 	throws ServletException, IOException {    
 
-		resp.sendRedirect(req.getContextPath()+"/modules/upload/index.jsp");
+		resp.sendRedirect(req.getContextPath()+"/modules/file/upload/index.jsp");
 		//	req.getRequestDispatcher("/modules/user/index.jsp").forward(req, resp);
 		/*
 		resp.setContentType("textml");

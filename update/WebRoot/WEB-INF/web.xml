@@ -62,6 +62,16 @@
 		<servlet-class>com.servlet.IPServlet</servlet-class>
 	</servlet>
 	
+		<servlet>
+		<servlet-name>RemoteDownloadServlet</servlet-name>
+		<servlet-class>com.storage.uploadServlet.RemoteDownloadServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>RemoteDownloadServlet</servlet-name>
+		<url-pattern>/remotedownload</url-pattern>
+	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>IPServlet</servlet-name>
 		<url-pattern>/iplookup</url-pattern>

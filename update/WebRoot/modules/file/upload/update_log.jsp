@@ -101,6 +101,8 @@
 	-->
 	<div>
 		<span id="btlogmin" onclick="resizeLogdiv(this);" style="cursor:hand;" title="min" >&lt;&lt;</span>
+		|
+		<span onclick="showNullPhone(this);" style="cursor:hand;" >显示空号</span>
 	</div>
 	<div id="logdiv" style="width:400px;height:90%;border:0px #f00 solid; font-size:9px;float:left;overflow:scroll">
    	<center>
@@ -167,6 +169,16 @@
 				$(obj).html(">>");
 			}
 		}
+		var bShowNull = false;
+		
+		function showNullPhone(obj){
+			bShowNull = !bShowNull;
+			if(bShowNull)
+				$(obj).html("隐藏空号");
+			else
+				$(obj).html("显示空号");
+			FreshData();
+		}
 		
 		function updateLog(response,status,xhr){
 			var ret = eval("("+response+")");
@@ -175,7 +187,7 @@
    			$(obj).each(function(index){
 			
    				var log = obj[index];
-				if(log.phone!=undefined && log.phone!="")
+				if(bShowNull || (log.phone!=undefined && log.phone!="") )
 				{
 					var newRow = "<tr>"
 					newRow += "<td class=hiddenclass>"+log.id+"</td>";
