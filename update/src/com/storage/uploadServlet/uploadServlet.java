@@ -69,7 +69,7 @@ public class uploadServlet extends HttpServlet{
 		 */
 
 		String callback = request.getParameter("callback");
-		String uploadroot = request.getParameter("dirroot");
+		String dirroot = request.getParameter("dirroot"); System.out.println("dirroot="+dirroot);
 		String savePath = request.getParameter("dir");
 		String saveName = request.getParameter("saveName");
 		String backupOldFile = request.getParameter("backup");//true/false
@@ -79,39 +79,39 @@ public class uploadServlet extends HttpServlet{
 
 		ServletContext sc = this.getServletConfig().getServletContext();
 
-		uploadroot 	= (uploadroot == null)? request.getRealPath("/") : uploadroot;
+		dirroot 	= (dirroot == null)? request.getRealPath("/") : dirroot;
 		savePath 	= (savePath==null)? "tempdir" : savePath;
 		fileTypes  	= (fileTypes==null)? "" : fileTypes;
 		fileNum 	= (fileNum==null)? "0":fileNum;
 
-		uploadroot = uploadroot.replace("\\", "/");
+		dirroot = dirroot.replace("\\", "/");
 
 		String realPath = sc.getRealPath("/"); 
 		realPath = realPath.replace("\\", "/");
 		String contexPath = sc.getContextPath();
 		int index = realPath.lastIndexOf(contexPath);
-		System.out.println("index="+index+"\n");
-		System.out.println("realPath="+realPath+"\n");
-		System.out.println("contexPath="+contexPath+"\n");
+		System.out.println("index="+index );
+		System.out.println("realPath="+realPath );
+		System.out.println("contexPath="+contexPath );
 		if(savePath.startsWith("/")){
 			if(index>0)
-				uploadroot =  realPath.substring(0, index);
+				dirroot =  realPath.substring(0, index);
 			else
-				uploadroot =  realPath;
+				dirroot =  realPath;
 		}
 
-		uploadroot = uploadroot.replace("\\", "/");
+		dirroot = dirroot.replace("\\", "/");
 		//设置接收的编码格式    
 		request.setCharacterEncoding("UTF-8");    
 		String fileFullPath = "";//文件存放真实地址    
 		String fileRealResistPath = "";//文件存放真实相对路径    
 		String firstFileName="";    
 
-		File file = new File(uploadroot+"/"+savePath);    
+		File file = new File(dirroot+"/"+savePath);    
 		if (!file.isDirectory()) {    
 			file.mkdirs();    
 		}    
-		System.out.println("save path=" + uploadroot+"/"+savePath);    
+		System.out.println("save path=" + dirroot+"/"+savePath);    
 
 		int fileuploadedSum = 0;
 		StringBuffer fileNames = new StringBuffer();
@@ -188,9 +188,9 @@ public class uploadServlet extends HttpServlet{
 							fileFullName = saveName;
 						else
 							fileFullName = newfileName + "_" + fileNum + "_" + fileuploadedSum + formatName;
-						fileFullPath = uploadroot + "/" + savePath  + "/" + fileFullName;//文件存放真实地址    
+						fileFullPath = dirroot + "/" + savePath  + "/" + fileFullName;//文件存放真实地址    
 
-						String oldFileFullPath  = uploadroot + "/" + savePath  + "/" +saveName;
+						String oldFileFullPath  = dirroot + "/" + savePath  + "/" +saveName;
 						if(backupOldFile!=null && backupOldFile.equals("true")){
 							File oldFie = new File(oldFileFullPath);
 							if(oldFie.exists()){
@@ -198,7 +198,7 @@ public class uploadServlet extends HttpServlet{
 							}
 						}
 
-						json.element("uploadroot", uploadroot);
+						json.element("dirroot", dirroot);
 						json.element("savePath", savePath);
 						json.element("savename", fileFullName);
 
@@ -269,7 +269,7 @@ public class uploadServlet extends HttpServlet{
 		out.print("<br />");
 		out.println("savePath = destination directory of the file relative to user's workspace.Default is 'tempdir'");
 		out.print("<br />");
-		out.println("uploadroot = destination root directory, default is '/'.");
+		out.println("dirroot = destination root directory, default is '/'.");
 		out.print("<br />");
 		out.println("fileTypes = the files types to  upload, format: mp4,avi,txt etc.");
 		out.print("<br />");

@@ -49,12 +49,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<br />
 	<br />
 	<li>
-	dir = destination directory of the file relative to uploadroot. 
+	dir = destination directory of the file relative to dirroot. 
 		If dir startwith '/'(e.g: upload?dir=/upload), the file directory relative to tomcat webapps. 
 		Default is 'tempdir' sub webapp directory. <br />
 		</li>
 	<li>
-	uploadroot = destination root directory, default is webapp directory. </li>
+	dirroot = destination root directory, default is webapp directory. </li>
 	
 	<li>
 	fileTypes = the files types to upload, format: mp4,avi,txt etc. </li>
@@ -74,10 +74,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<strong>e.g:</strong><br />
 	Format: {"error":error code,"msg":"error description.","data":[file json list]}
 	<li>
-		{"error":0,"msg":"Uploaded 1 files","data":[{"error":0,"filename":"android.131005190538.sql","uploadroot":"E:/WebServer/Tomcat 6.0/webapps","savePath":"/upload","savename":"20131006141123882_0_0.sql"}]}
+		{"error":0,"msg":"Uploaded 1 files","data":[{"error":0,"filename":"android.131005190538.sql","dirroot":"E:/WebServer/Tomcat 6.0/webapps","savePath":"/upload","savename":"20131006141123882_0_0.sql"}]}
 	</li>
 	<li>
-		{"error":0,"msg":"Uploaded 2 files","data":[{"error":0,"filename":"Android开发教程(完全免费版).pdf","msg":"File[Android开发教程(完全免费版).pdf] upload success @2013-10-17 17:24:40.006","uploadroot":"E:/WebServer/Tomcat 6.0/webapps","savePath":"/download-center/apk","savename":"its_sps.apk"},{"error":0,"filename":"chizi2.doc","msg":"File[chizi2.doc] upload success @2013-10-17 17:24:40.077","uploadroot":"E:/WebServer/Tomcat 6.0/webapps","savePath":"/download-center/apk","savename":"its_sps.apk"}]}
+		{"error":0,"msg":"Uploaded 2 files","data":[{"error":0,"filename":"Android开发教程(完全免费版).pdf","msg":"File[Android开发教程(完全免费版).pdf] upload success @2013-10-17 17:24:40.006","dirroot":"E:/WebServer/Tomcat 6.0/webapps","savePath":"/download-center/apk","savename":"its_sps.apk"},{"error":0,"filename":"chizi2.doc","msg":"File[chizi2.doc] upload success @2013-10-17 17:24:40.077","dirroot":"E:/WebServer/Tomcat 6.0/webapps","savePath":"/download-center/apk","savename":"its_sps.apk"}]}
 	</li>
 
 	<br />

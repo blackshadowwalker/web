@@ -25,7 +25,17 @@
 			<input type="submit"><br>
 </form>
 <hr size=3>
+<p>
+action="upload.do?dirroot=D:/ftp&dir=temp&saveName=vs2008-sp.iso"</br>
+</p>
+<form action="<%=path %>/upload.do?dirroot=D:/ftp&dir=temp&saveName=vs2008-sp.iso" method="post" target="hidden_frame" ENCTYPE="multipart/form-data" >
+		<input name="myfile" type="file"><br>
+		<input type="submit"><br>
+		<p id="ret">
+		</p>
+</form>
 
+<hr size=3>
 <p>
 	action="upload.do?callback=callback"<br>
 </p>
